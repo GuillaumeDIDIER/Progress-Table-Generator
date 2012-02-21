@@ -1,0 +1,11 @@
+build
+release
+debug
+*.app
+moc_*
+qrc_*
+ui_*
+Makefile*
+Todo
+Temp
+*.xcodeproj

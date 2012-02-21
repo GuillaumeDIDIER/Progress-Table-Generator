@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+    <xsd:element name="Elements">
+		<xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Element" type="ElementType" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	
+    <xsd:complexType name="ElementType">
+        <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+            <xsd:element name="Symbol" type="SymbolType"/>
+            <xsd:element name="Z" type="xsd:positiveInteger"/>
+            <xsd:element name="A" type="xsd:positiveInteger"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	
+    <xsd:simpleType name="SymbolType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Z][a-z]{0,2}"/>
+    	</xsd:restriction>
+    </xsd:simpleType>
+	
+</xsd:schema>
