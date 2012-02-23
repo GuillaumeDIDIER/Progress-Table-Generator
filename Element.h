@@ -32,6 +32,8 @@ public:
 		//	comparison
 	static bool symbolCompare(const Element* a, const Element* b);
 	static bool ZCompare(const Element* a, const Element* b);
+		//	RX
+	static const QString element_rx();
 protected:
 		/*	members
 			name : its name

@@ -11,6 +11,8 @@
 
 #include "Element.h"
 
+	//
+const QString Element::element_rx(){ return QString("[A-Z][a-z]{0,2}");}
 	//	Default constructor, not very useful
 Element::Element() : m_name(""), m_symbol(""), m_Z(0), m_A(0)/*, m_maxBond(0), m_externalElectronNb(0)*/{}
 

@@ -51,7 +51,6 @@ public:
 	static ElementTable * getPeriodicElementTable();
 	static void setPeriodicElementTable(ElementTable* pTable);
 	
-	static const QString symbol_rx();
 	static const QString nb_rx();
 	static const QString symbolNb_rx();
 	static const QString symbolNbCapture_rx();

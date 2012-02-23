@@ -10,10 +10,9 @@
 #include "Molecule.h"
 
 	//	class const variables
-const QString Molecule::symbol_rx(){ return QString("[A-Z][a-z]{0,2}");}
 const QString Molecule::nb_rx(){return QString("\\d*");}
-const QString Molecule::symbolNb_rx(){return Molecule::symbol_rx() + Molecule::nb_rx();}
-const QString Molecule::symbolNbCapture_rx(){return QString("(") + Molecule::symbol_rx() + QString(")(") + Molecule::nb_rx() + QString(")");}
+const QString Molecule::symbolNb_rx(){return Element::element_rx() + Molecule::nb_rx();}
+const QString Molecule::symbolNbCapture_rx(){return QString("(") + Element::element_rx() + QString(")(") + Molecule::nb_rx() + QString(")");}
 const QString Molecule::bracketed_rx(){return QString("\\((?:") + Molecule::symbolNb_rx() + QString(")+\\)") + Molecule::nb_rx();}
 const QString Molecule::bracketedCapture_rx(){return QString("\\(((?:") + Molecule::symbolNb_rx() + QString(")+)\\)(") + Molecule::nb_rx() + QString(")");}
 const QString Molecule::symbolNb_or_Bracketed_rx(){return QString("(?:") + Molecule::symbolNb_rx() + QString(")|(?:") + Molecule::bracketed_rx() + QString(")");}
