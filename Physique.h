@@ -23,22 +23,41 @@
 
 /*
  *	Code Documentation
- *	a main.cpp no comment
+ *	This file, Physique.h : global includes.
+ *	a main.cpp : no comment
  *	three Qt Gui classes Files :
- *		MainWindow no more comment needed
- *		MainMenuBar the menu BAR
- *		ProgressTableW the dialog which shows the Progress Table
- *	four model level classes Files
- *		Element which represents an element ex O C He
- *		ElementTable which provide a periodic element Table
- *		Molecule represents molecules
- *		Equation represents a chemical eqution
+ *		MainWindow.[h/cpp] : no more comment needed
+ *		MainMenuBar.[h/cpp] : the menu bar
+ *		ProgressTableW.[h/cpp] : the dialog which shows the Progress Table
+ *	four classes Files of the model layer :
+ *		Element.[h/cpp] : represents a chemical element ex O C He
+ *		ElementTable : provide a periodic element Table
+ *		Molecule.[h/cpp] : represents molecules
+ *		Equation.[h/cpp] : represents a chemical equation
  *	an additional file for unit tests, UnitTest
- *	four Qt temporory sources (moc_... qrc_...)
- *	Physique.pro qmake project for the project
- *	Physique.xcodeproject is the mac xcode 2.4 compatible project its a bundle
- *	Physique.qrc the project built in resources
- *	Physique.ts .qm Qt traduction files
+ *	4 Qt temporory sources (moc_... qrc_...) : Qt-generated. Not present on a clean repository.
+ *	Physique.pro : qmake project for the project
+ *	Physique_mac.pri : project include use for mac config (SDKs et arch)
+ *	Physique.qrc : the project built-in resources
+ *	Physique_[mac/other].qrc : built-in resources for mac or pther platforms
+ *	Physique.[ts/qm] : Qt traduction files [sources/compiled]
+ *	
+ *	Physique_win_icon.rc : windows resources for setting the icon on the W system
+ *
+ *	Other Files :
+ *		Element.xml : XML Periodic Element Table
+ *		Element.xsd : XML Schema of the XML Peridic Element Table 
+ *		
+ *		Images :
+ *			Erlenmeyer - 3232px, Erlenmeyer - Version 1, Erlenmeyer.icns, Erlenmeyer.ico :
+ *				Application's Icon(mac=.icns et win=.ico) and its sources(png)
+ *			Mac/, croix.png, question.png, tick.png : images used by the application
+ *			Projet de Physique/ : Unused images
+ *		
+ *		Info.plist, InfoPlist-Physique.plist : the mac Application Bundle Info.plist
+ *
+ *		Todo/ : things to do
+ *		Todo/done/ : things that were to do and have been done.
  */
 
 #endif
