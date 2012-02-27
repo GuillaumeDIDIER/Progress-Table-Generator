@@ -41,56 +41,56 @@ Notez que les electrons (e-) ne sont pas encore supportés</translation>
     </message>
     <message>
         <source>Equilibrate</source>
-        <translation type="unfinished">Équilibrer</translation>
+        <translation>Équilibrer</translation>
     </message>
     <message>
         <source>Invalid equation</source>
-        <translation type="unfinished">Équation invalide</translation>
+        <translation>Équation invalide</translation>
     </message>
     <message>
         <source>The chemical equation isn&apos;t valid.
 Please enter a valid equation</source>
-        <translation type="unfinished">Cette équation n&apos;est pas valide.
+        <translation>Cette équation n&apos;est pas valide.
 Veuillez en entrer une valide</translation>
     </message>
     <message>
         <source>Unequilibrated equation</source>
-        <translation type="unfinished">Équation non équilibrée</translation>
+        <translation>Équation non équilibrée</translation>
     </message>
     <message>
         <source>The chemical equation is not equilibrated
 Continue all the same or cancel to equilibrate ?</source>
-        <translation type="unfinished">Cette équation n&apos;est pas équilibrée.
+        <translation>Cette équation n&apos;est pas équilibrée.
 Continuer quand même ou annuler pour équilibrer ?</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished">Continuer</translation>
+        <translation>Continuer</translation>
     </message>
     <message>
         <source>Error while equilibrating</source>
-        <translation type="unfinished">Erreur en tentant d&apos;équilibrer</translation>
+        <translation>Erreur en tentant d&apos;équilibrer</translation>
     </message>
     <message>
         <source>The chemical equation couldn&apos;t be equilibrated.
 Continue all the same with this equation : %1 ?</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;équation de la réaction n&apos;a pas pu être équilibrée. Continuer quand même avec cette équation : %1 ?</translation>
     </message>
     <message>
         <source>The equation is not valid</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;équation n&apos;est pas valide</translation>
     </message>
     <message>
         <source>The equation is equilibrated</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;équation est équilibrée</translation>
     </message>
     <message>
         <source>The equation is not equilibrated</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;équation n&apos;est pas équilibrée</translation>
     </message>
     <message>
         <source>Could not equilibrate equation</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;équation n&apos; a pu être équilibrée</translation>
     </message>
 </context>
 <context>
@@ -140,14 +140,14 @@ Continue all the same with this equation : %1 ?</source>
     </message>
     <message>
         <source>&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>ElementTable.xml</source>
-        <translation type="unfinished"></translation>
+        <translation>ElementTable.xml</translation>
     </message>
     <message>
         <source>Progress Table : 
@@ -188,30 +188,30 @@ Continue all the same with this equation : %1 ?</source>
     <name>MatterQuantityPage</name>
     <message>
         <source>Reactives Matter Quantities</source>
-        <translation type="unfinished"></translation>
+        <translation>Quantité de matière des réactifs</translation>
     </message>
     <message>
         <source>Please enter the matter quantities of the following reactives</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez entrer les quantités de matière des réactifs suivants</translation>
     </message>
 </context>
 <context>
     <name>ProgressTableW</name>
     <message>
         <source>Empty Progress Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tableau d&apos;avancement vide</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Progress Table : %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tableau d&apos;avancement : %1</translation>
     </message>
     <message>
         <source>Progress Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tableau d&apos;avancement</translation>
     </message>
 </context>
 </TS>
