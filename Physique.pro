@@ -45,8 +45,9 @@ CONFIG(debug) {
 	 HEADERS += UnitTest.h
 }
 win32:RC_FILE = Physique_win_icon.rc
-DEFINES += XMLPARSER_INCLUDED VERSION=\"$${VERSION}\"
-
+DEFINES += XMLPARSER_INCLUDED
+macx-xcode:DEFINES += VERSION=\"$${VERSION}\"
+!macx-xcode:DEFINES += VERSION=\\\"$${VERSION}\\\"
 elementTableFiles += ElementTable.xml
 
 OTHER_FILES += elementTableFiles
