@@ -83,11 +83,13 @@ void MainMenuBar::about(){
 	QIcon icon(":/icon.png");
 	aboutBox->setIconPixmap(icon.pixmap(icon.actualSize(QSize(64, 64))));
 	aboutBox->setWindowTitle(tr("About %1").arg(qAppName()));
-	aboutBox->setText(tr("About %1").arg(qAppName()));
+	aboutBox->setText(tr("%1").arg(qAppName()));
 	aboutBox->setInformativeText(tr(
-									"<p></p>"
-									"<p></p>"
-									));
+									"<p>Version %1</p>"
+									"<p>Copyright Guillaume DIDIER 2011-2012</p>"
+									"<p>Graphics Copyright Alexis FALAISE 2011-2012<p/>"
+									"<p>Periodic Element Table Copyright Gustave TANURI-DENIS<p/>"
+									).arg(VERSION));
 	aboutBox->show();
 		
 	
