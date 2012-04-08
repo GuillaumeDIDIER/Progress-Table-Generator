@@ -59,5 +59,10 @@
  *		Todo/ : things to do
  *		Todo/done/ : things that were to do and have been done.
  */
+#ifndef VERSION
+#define VERSION "0.1.0"
+	//	Changes must reflect those in Physique.pro and InfoPlist-Physique.plist
+#endif // ifndef VERSION
 
-#endif
+
+#endif // Physique_H HeaderGuard

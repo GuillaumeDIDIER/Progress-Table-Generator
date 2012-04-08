@@ -14,7 +14,7 @@ INCLUDEPATH += .
 
 mac:TARGET = "Progress Table Generator"
 else:TARGET = ProgressTableGenerator
-VERSION = 0.1.0
+VERSION = 0.1.0 # Changes must be reflected in Physique.h and InfoPlist-Physique.plist
 
 # Input
 GuiSources += MainMenuBar.cpp MainWindow.cpp ProgressTableW.cpp
@@ -45,7 +45,7 @@ CONFIG(debug) {
 	 HEADERS += UnitTest.h
 }
 win32:RC_FILE = Physique_win_icon.rc
-DEFINES += XMLPARSER_INCLUDED
+DEFINES += XMLPARSER_INCLUDED VERSION=\"$${VERSION}\"
 
 elementTableFiles += ElementTable.xml
 
