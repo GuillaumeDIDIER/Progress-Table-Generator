@@ -84,7 +84,7 @@ bool Equation::equilibrate(){
 	}												//	the molecule charge
 		//	shouldn't be needed
 	for (int j = 0; j < rowCount + 1; ++j) {		//	the last column
-		equationGaussSolver[columnCount][j] = 0;	//	initialized to zero
+		equationGaussSolver[j][columnCount] = 0;	//	initialized to zero
 	}												//	the last line
 	equationGaussSolver[rowCount + 1][0] = 1;		// first molecule count = 1
 	equationGaussSolver[rowCount + 1][columnCount] = 1;
