@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget* parent) : QWizard(parent), m_equation(NULL) {
 	QIcon icon(":/icon.png");
 	setPixmap(QWizard::LogoPixmap, icon.pixmap(icon.actualSize(QSize(64, 64))));
 	setPixmap(QWizard::WatermarkPixmap, QPixmap(QString(":/Images/watermark.png")));
-	setPixmap(QWizard::BannerPixmap, QPixmap(QString(":/Images/banner.png")));
+		//	setPixmap(QWizard::BannerPixmap, QPixmap(QString(":/Images/banner.png")));
 		//	creating the pages
 	setPage(P_Intro, new IntroPage(this));
 	setPage(P_Equation, new EquationPage(this));
@@ -314,6 +314,7 @@ bool EquationPage::validatePage(){
 
 EquilibratePage::EquilibratePage(QWidget* parent) : QWizardPage(parent), m_equation(0){
 	setTitle(tr("Equilibrating the equation"));
+	setSubTitle(tr("The programm has verified wether the equation is equilibrated and valid or not."));
 	m_mainLayout = new QVBoxLayout();
 	m_eqStr = new QLabel();
 	m_eqStr->setAlignment(Qt::AlignCenter);
@@ -434,21 +435,25 @@ void EquilibratePage::setState(State state){
 			m_stateLabel->setText(tr("The equation is not valid"));
 			m_stateLabelImg->setPixmap(QPixmap(":/images/Failure.png"));	//	red PNG
 			m_equilibrate->setEnabled(false);
+			setPixmap(QWizard::WatermarkPixmap, QPixmap(QString(":/Images/watermark_red.png")));
 			break;
 		case Equilibrated:
 			m_stateLabel->setText(tr("The equation is equilibrated"));
 			m_stateLabelImg->setPixmap(QPixmap(":/images/Success.png"));	//	green PNG
 			m_equilibrate->setEnabled(false);
+			setPixmap(QWizard::WatermarkPixmap, QPixmap(QString(":/Images/watermark.png")));
 			break;
 		case Unequilibrated:
 			m_stateLabel->setText(tr("The equation is not equilibrated"));	
 			m_stateLabelImg->setPixmap(QPixmap(":/images/Warning.png"));	//	orange '?' PNG
 			m_equilibrate->setEnabled(true);
+			setPixmap(QWizard::WatermarkPixmap, QPixmap(QString(":/Images/watermark_orange.png")));
 			break;
 		case Error:
 			m_stateLabel->setText(tr("Could not equilibrate equation"));
 			m_stateLabelImg->setPixmap(QPixmap(":/images/Warning.png"));	//	orange '?' PNG
 			m_equilibrate->setEnabled(true);
+			setPixmap(QWizard::WatermarkPixmap, QPixmap(QString(":/Images/watermark_orange.png")));
 			break;
 
 	}
