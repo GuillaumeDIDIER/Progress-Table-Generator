@@ -19,6 +19,9 @@ MainWindow::MainWindow(QWidget* parent) : QWizard(parent), m_equation(NULL) {
 	setAttribute(Qt::WA_DeleteOnClose);
 	m_menuBar = new MainMenuBar(this);
 	m_menuBar->setCopy(false);
+		//	default graphics
+	QIcon icon(":/icon.png");
+	setPixmap(QWizard::LogoPixmap, icon.pixmap(icon.actualSize(QSize(64, 64))));
 		//	creating the pages
 	setPage(P_Intro, new IntroPage(this));
 	setPage(P_Equation, new EquationPage(this));
