@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget* parent) : QWizard(parent), m_equation(NULL) {
 		//	default graphics
 	QIcon icon(":/icon.png");
 	setPixmap(QWizard::LogoPixmap, icon.pixmap(icon.actualSize(QSize(64, 64))));
+	setPixmap(QWizard::WatermarkPixmap, QPixmap(QString(":/Images/watermark.png")));
+	setPixmap(QWizard::BannerPixmap, QPixmap(QString(":/Images/banner.png")));
 		//	creating the pages
 	setPage(P_Intro, new IntroPage(this));
 	setPage(P_Equation, new EquationPage(this));
