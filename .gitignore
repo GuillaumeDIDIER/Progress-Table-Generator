@@ -9,3 +9,7 @@ Makefile*
 Temp
 *.xcodeproj
 *.pro.user
+.rcc
+.moc
+.obj
+tmp
