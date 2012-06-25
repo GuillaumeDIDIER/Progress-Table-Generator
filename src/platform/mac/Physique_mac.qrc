@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="Success.png">images/Success.png</file>
+		<file alias="Failure.png">images/Failure.png</file>
+		<file alias="Warning.png">images/Warning.png</file>
+    </qresource>
+</RCC>

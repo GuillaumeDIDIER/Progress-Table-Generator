@@ -1,0 +1,16 @@
+<RCC>
+	<qresource prefix="/">
+		<file alias="ElementTable.xsd">physics/XmlElementTable/ElementTable.xsd</file>
+		<file alias="ElementTable.xml">physics/XmlElementTable/ElementTable.xml</file>
+		<file alias="icon.png">gui/images/icon/Erlenmeyer-Transparent.png</file>
+		<file alias="icon_low.png">gui/images/icon/Erlenmeyer-32.png</file>
+		<file >gui/images/watermark.png</file>
+		<file >gui/images/banner.png</file>
+		<file >gui/images/watermark_orange.png</file>
+		<file >gui/images/watermark_red.png</file>
+	</qresource>
+	<qresource prefix="/translations">
+		<file alias="Physique_fr.qm">../translation/Physique_fr.qm</file>
+		<file alias="qt_fr.qm">../qtTranslations/qt_fr.qm</file>
+	</qresource>
+</RCC>
