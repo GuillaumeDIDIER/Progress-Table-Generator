@@ -11,6 +11,6 @@
 	</qresource>
 	<qresource prefix="/translations">
 		<file alias="Physique_fr.qm">../translation/Physique_fr.qm</file>
-		<file alias="qt_fr.qm">../qtTranslations/qt_fr.qm</file>
+		<file alias="qt_fr.qm">../translation/qt_fr.qm</file>
 	</qresource>
 </RCC>
