@@ -92,6 +92,10 @@ Continue all the same with this equation : %1 ?</source>
         <source>Could not equilibrate equation</source>
         <translation>L&apos;équation n&apos; a pu être équilibrée</translation>
     </message>
+    <message>
+        <source>The programm has verified wether the equation is equilibrated and valid or not.</source>
+        <translation>Le programme a vérifié si l&apos;équation était équilibrée et valide ou non.</translation>
+    </message>
 </context>
 <context>
     <name>IntroPage</name>
@@ -140,7 +144,15 @@ Continue all the same with this equation : %1 ?</source>
     </message>
     <message>
         <source>&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</translation>
+        <translation type="obsolete">&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>%1</source>
+        <translation>%1</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Version %1&lt;/p&gt;&lt;p&gt;Copyright Guillaume DIDIER 2011-2012&lt;/p&gt;&lt;p&gt;Graphics Copyright Alexis FALAISE 2011-2012&lt;p/&gt;&lt;p&gt;Periodic Element Table Copyright Gustave TANURI-DENIS&lt;p/&gt;</source>
+        <translation>&lt;p&gt;Version %1&lt;/p&lt;p&gt;Copyright Guillaume DIDER 2011-2012&lt;/p&gt;&lt;p&gt;Graphiques Copyright Alexis FALAISE 2011-2012&lt;/p&gt;&lt;p&gt;Tableau Périodique des Éléments Copyright Gustave TANURI-DENIS&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
