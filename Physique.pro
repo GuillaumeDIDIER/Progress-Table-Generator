@@ -12,7 +12,7 @@ MOC_DIR = .moc
 RCC_DIR = .rcc
 
 
-
+INCLUDEPATH += "include"
 
 
 

@@ -12,7 +12,7 @@ else:TARGET = ProgressTableGenerator
 VERSION = 0.1.0 # Changes must be reflected in Physique.h and InfoPlist-Physique.plist
 DESTDIR = ../bin
 DEPENDPATH += .
-INCLUDEPATH += .
+INCLUDEPATH += . "../include"
 
 OBJECTS_DIR = .obj
 MOC_DIR = .moc

@@ -14,14 +14,16 @@
 #include "physics/Molecule.h"
 #include "physics/Equation.h"
 
-#include <../../../Libraries/rmath/Rational.hpp>
-#include <../../../Libraries/rmath/MathsFuncs.hpp>
+//#include <../../../Libraries/rmath/Rational.hpp>
+//#include <../../../Libraries/rmath/MathsFuncs.hpp>
+
+#include<boost/rational.hpp>
 
     //	class const variables
 const QString Equation::equation_rx(){return QString("(") + Molecule::nb_rx()  + QString(" *") + Molecule::molecule_rx() + QString(" \\+ )*(") + Molecule::nb_rx() + QString(" *") + Molecule::molecule_rx() + QString(")");}
     //	prototypes
 #ifdef DEBUG
-QDebug& operator<<(QDebug& out, const Rational& rat);
+QDebug& operator<<(QDebug& out, const boost::rational<int> & rat);
 #endif	//	ifdef DEBUG
 
     //	private funcs
@@ -72,7 +74,7 @@ bool Equation::equilibrate(){
     qSort(molecules.begin(), molecules.end(), moleculeLessThanUser);
     int columnCount = molecules.length();
         //	now we can create the solver matrix, with the right size
-    QList<QList<Rational> > equationGaussSolver(QVector<QList<Rational> >(rowCount + 2, QVector<Rational>(columnCount + 1, 0).toList()).toList());
+    QList<QList<boost::rational<int> > > equationGaussSolver(QVector<QList<boost::rational<int> > >(rowCount + 2, QVector<boost::rational<int> >(columnCount + 1, 0).toList()).toList());
                                         //	matrix used for solving, not very elegant and optimised but it works.
         //	which we can now fill in
     for (int i = 0; i < columnCount; ++i) {			//	for each colmun
@@ -112,7 +114,7 @@ bool Equation::equilibrate(){
             return false;					//		return False
         }
         for (int i2 = i+1; i2 < h; ++i2) {	//	for y2 in range(y+1, h):    # Eliminate column y
-            Rational c = equationGaussSolver[i2][i] / equationGaussSolver[i][i];
+            boost::rational<int> c = equationGaussSolver[i2][i] / equationGaussSolver[i][i];
                 //		c = m[y2][y] / m[y][y]
             for (int j = i; j < w; ++j)		//		for x in range(y, w):
                 equationGaussSolver[i2][j] -= equationGaussSolver[i][j] * c;
@@ -120,7 +122,7 @@ bool Equation::equilibrate(){
         }
     }
     for (int i = std::min(h, w -1) - 1; i > -1; --i) {		//for y in range(h-1, 0-1, -1): # Backsubstitute
-        Rational c = equationGaussSolver[i][i];
+        boost::rational<int> c = equationGaussSolver[i][i];
             //	c  = m[y][y]
         for (int i2 = 0; i2 < i; ++i2) {		//	for y2 in range(0,y):
             for (int j = w - 1; j > i - 1; --j) {
@@ -136,16 +138,16 @@ bool Equation::equilibrate(){
 
 
         //	solving is now done ; we just need to extract results
-    QMap<Molecule, Rational> moleculesStoechs;	//	a dict of molecule stoech, negative fo products
+    QMap<Molecule, boost::rational<int> > moleculesStoechs;	//	a dict of molecule stoech, negative fo products
     for (int i = 0; i < columnCount; ++i)		//	filling it
         moleculesStoechs[molecules[i]] = equationGaussSolver[i][columnCount];
-    QMutableMapIterator<Molecule, Rational> i(moleculesStoechs);	//	for looping on it
+    QMutableMapIterator<Molecule, boost::rational<int> > i(moleculesStoechs);	//	for looping on it
     m_reactives.clear();	//	reseting thoses
     m_products.clear();
     int ppcm = 1;			//	to turn Rationals into ints (by homogeneity)
     while (i.hasNext()) {	//	getting the denominators ppcm
         i.next();
-        ppcm *= i.value().denominator() / PGCD(ppcm, i.value().denominator());
+        ppcm *= i.value().denominator() / boost::gcd(ppcm, i.value().denominator());
     }
     while (i.hasPrevious()) {//	multiplying all values by it, looping in reverse order
         i.previous();
@@ -156,10 +158,10 @@ bool Equation::equilibrate(){
     while (i.hasNext()) {	//	extracting results to the reactives and products dicts
         i.next();
         if (i.value() < 0) {
-            m_products.insert(i.key(), -(i.value().intPart()));
+            m_products.insert(i.key(), -(i.value().numerator() / i.value().denominator()));
         }
         else if (i.value() > 0) {
-            m_reactives.insert(i.key(), i.value().intPart());
+            m_reactives.insert(i.key(), i.value().numerator() / i.value().denominator());
         }
     }
     return isEquilibrated();	//	for if the algorithm fails
@@ -307,7 +309,7 @@ bool operator==(const Equation& a, const Equation& b){
     return (a.m_reactives == b.m_reactives) && (a.m_products == b.m_products);
 }
 #ifdef DEBUG
-QDebug& operator<<(QDebug& out, const Rational& rat){
+QDebug& operator<<(QDebug& out, const boost::rational<int> & rat){
     out << rat.numerator() << "/" << rat.denominator();
     return out;
 }
