@@ -20,13 +20,15 @@ RCC_DIR = .rcc
 
 # Input
 GuiSources += gui/MainMenuBar.cpp gui/MainWindow.cpp gui/ProgressTableW.cpp
-PhysicsSources += physics/Element.cpp physics/ElementTable.cpp physics/Molecule.cpp physics/Equation.cpp
+PhysicsSources += physics/Element.cpp physics/ElementTable.cpp physics/Molecule.cpp physics/Equation.cpp physics/Reactive.cpp
 SOURCES += main.cpp $$GuiSources $$PhysicsSources
+
 
 PrivateGuiHeader = gui/MainWindow_p.h
 GuiHeaders += gui/MainMenuBar.h gui/MainWindow.h gui/ProgressTableW.h  $$PrivateGuiHeader
-PhysicsHeaders += physics/Element.h physics/ElementTable.h physics/Molecule.h physics/Equation.h
+PhysicsHeaders += physics/Element.h physics/ElementTable.h physics/Molecule.h physics/Equation.h physics/Reactive.h
 HEADERS += Physique.h $$GuiHeaders $$PhysicsHeaders
+
 TRANSLATIONS += ../translation/Physique_fr.ts
 
 RESOURCES += Physique.qrc
