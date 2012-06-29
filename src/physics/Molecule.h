@@ -73,7 +73,7 @@ protected:
 
          m_formula : the formula given, may not be a raw formula
          m_validComputed : if the m_valid attribute has been computed
-         m_valid : if the molécule is valid might exist
+         m_valid : if the molecule is valid might exist
          m_charge : its charge
         */
     static ElementTable * c_PeriodicElementTable;

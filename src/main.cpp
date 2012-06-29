@@ -25,7 +25,7 @@
     //	the main (no more comments needed)
 int main (int argc, char ** argv) {
     Q_INIT_RESOURCE(Physique);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_DARWIN
     Q_INIT_RESOURCE(Physique_mac);
 #else
     Q_INIT_RESOURCE(Physique_other);
@@ -51,6 +51,9 @@ int main (int argc, char ** argv) {
     QStringList xmlFiles;
     QString xmlFileRoot = MainWindow::tr("ElementTable.xml");
     xmlFiles.append(xmlFileRoot);
+#ifdef Q_OS_DARWIN
+    xmlFiles.append("../../../" + xmlFileRoot);
+#endif // Q_OS_DARWIN
     xmlFiles.append(":/" + xmlFileRoot);
     ElementTable::loadElementTable(xmlFiles);
 #endif	//	XMLPARSER_INCLUDED
