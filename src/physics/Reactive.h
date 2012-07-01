@@ -13,10 +13,10 @@ public:
     virtual QString toHtml() const =0;
 
     class ReactiveFactory{
-    public:
+    protected:
         ReactiveFactory();
+    public:
         virtual Reactive * buildReactive(QString formula) =0; // Return nul pointer if not possible.
-
     };
 
     virtual ReactiveFactory* factory() const =0;
