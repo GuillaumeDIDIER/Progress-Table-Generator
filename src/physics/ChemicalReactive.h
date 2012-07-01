@@ -20,7 +20,9 @@ public:
         ChemicalReactiveFactory();
     public:
         virtual ChemicalReactive * buildReactive(QString formula) =0; // Return nul pointer if not possible.
+        virtual QString reactiveRX() =0; // returns the regExp validating the reactives built by the factory.
     };
+
     virtual ChemicalReactiveFactory* factory() const =0;
     virtual QMap<const Element*, int> elementMap() const =0;
     virtual int charge() const =0;
