@@ -5,7 +5,7 @@
 ######################################################################
 
 TEMPLATE = app
-CONFIG += debug_and_release build_all warn_on
+CONFIG += debug_and_release build_all warn_on fix_output_dir
 QT += xml xmlpatterns
 mac:TARGET = "Progress Table Generator"
 else:TARGET = ProgressTableGenerator
@@ -14,9 +14,10 @@ DESTDIR = ../bin
 DEPENDPATH += .
 INCLUDEPATH += . "../include"
 
-OBJECTS_DIR = .obj
-MOC_DIR = .moc
-RCC_DIR = .rcc
+#message("objectdir=$$OBJECT_DIR")
+#OBJECTS_DIR = debug/.obj
+#MOC_DIR = debug/.moc
+#RCC_DIR = debug/.rcc
 
 # Input
 GuiSources += gui/MainMenuBar.cpp gui/MainWindow.cpp gui/ProgressTableW.cpp
@@ -44,10 +45,19 @@ else{
     win32:RESOURCES += platform/windows/Physique_win.qrc
     else:RESOURCES += platform/other/Physique_other.qrc
 }
-CONFIG(debug) {
-     DEFINES += DEBUG
-     SOURCES += unittest/UnitTest.cpp
-     HEADERS += unittest/UnitTest.h
+build_pass:CONFIG(debug, debug|release) {
+    DEFINES += DEBUG
+    SOURCES += unittest/UnitTest.cpp
+    HEADERS += unittest/UnitTest.h
+    TARGET = $${TARGET}_debug
+    OBJECTS_DIR = debug/.obj
+    MOC_DIR = debug/.moc
+    RCC_DIR = debug/.rcc
+}
+build_pass:CONFIG(release, debug|release){
+    OBJECTS_DIR = release/.obj
+    MOC_DIR = release/.moc
+    RCC_DIR = release/.rcc
 }
 win32:RC_FILE = platform/windows/Physique_win_icon.rc
 DEFINES += XMLPARSER_INCLUDED

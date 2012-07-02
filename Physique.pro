@@ -4,7 +4,7 @@
 # copyright Guillaume DIDIER 2011
 ######################################################################
 
-CONFIG += ordered
+CONFIG += ordered recursive debug_and_release
 TEMPLATE = subdirs
 SUBDIRS += src
 OBJECTS_DIR = .obj
