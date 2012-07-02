@@ -7,7 +7,7 @@
 class Reactive
 {
 public:
-    Reactive();
+    Reactive(bool * ok = 0);
     virtual bool isValid() const =0;
     virtual QString toStr() const =0;
     virtual QString toHtml() const =0;
@@ -15,9 +15,10 @@ public:
     class ReactiveFactory{
     protected:
         ReactiveFactory();
+        virtual ~ReactiveFactory();
     public:
-        virtual Reactive * buildReactive(QString formula) =0; // Return nul pointer if not possible.
-        virtual QString reactiveRX() =0; // returns the regExp validating the reactives built by the factory.
+        virtual Reactive * buildReactive(QString formula) const =0; // Return nul pointer if not possible.
+        virtual QString reactiveRX() const =0; // returns the regExp validating the reactives built by the factory.
     };
 
     virtual ReactiveFactory* factory() const =0;

@@ -1,10 +1,16 @@
 #include "Reactive.h"
 
-Reactive::Reactive()
+Reactive::Reactive(bool *ok)
 {
+    if(ok)
+        *ok = true;
 }
 
 
 ReactiveFactory::ReactiveFactory()
+{
+}
+
+ReactiveFactory::~ReactiveFactory()
 {
 }

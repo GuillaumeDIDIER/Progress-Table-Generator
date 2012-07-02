@@ -11,16 +11,17 @@
 class ChemicalReactive : public Reactive
 {
 public:
-    ChemicalReactive();
+    ChemicalReactive(bool * ok);
     virtual bool isValid() const =0;
     virtual QString toStr() const =0;
     virtual QString toHtml() const =0;
     class ChemicalReactiveFactory : public ReactiveFactory {
     protected:
         ChemicalReactiveFactory();
+        virtual ~ChemicalReactiveFactory();
     public:
-        virtual ChemicalReactive * buildReactive(QString formula) =0; // Return nul pointer if not possible.
-        virtual QString reactiveRX() =0; // returns the regExp validating the reactives built by the factory.
+        virtual ChemicalReactive * buildReactive(QString formula) const =0; // Return nul pointer if not possible.
+        virtual QString reactiveRX() const =0; // returns the regExp validating the reactives built by the factory.
     };
 
     virtual ChemicalReactiveFactory* factory() const =0;
