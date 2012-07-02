@@ -5,7 +5,7 @@
 ######################################################################
 
 TEMPLATE = app
-CONFIG += debug_and_release build_all warn_on
+CONFIG += debug_and_release build_all warn_on fix_output_dir
 QT += xml xmlpatterns
 mac:TARGET = "Progress Table Generator"
 else:TARGET = ProgressTableGenerator
@@ -13,10 +13,6 @@ VERSION = 0.1.0 # Changes must be reflected in Physique.h and InfoPlist-Physique
 DESTDIR = ../bin
 DEPENDPATH += .
 INCLUDEPATH += . "../include"
-
-OBJECTS_DIR = .obj
-MOC_DIR = .moc
-RCC_DIR = .rcc
 
 # Input
 GuiSources += gui/MainMenuBar.cpp gui/MainWindow.cpp gui/ProgressTableW.cpp
@@ -37,9 +33,6 @@ RESOURCES += Physique.qrc
 macx {
     include(../Physique_mac.pri)
     QMAKE_INFO_PLIST = platform/mac/InfoPlist-Physique.plist
-    Bundle_Ressources.files = platform/mac/en.lproj platform/mac/fr.lproj
-    Bundle_Ressources.path = Contents/Resources
-    QMAKE_BUNDLE_DATA += Bundle_Ressources
     RESOURCES  += platform/mac/Physique_mac.qrc
     ICON = platform/mac/Erlenmeyer.icns
 }
@@ -47,10 +40,30 @@ else{
     win32:RESOURCES += platform/windows/Physique_win.qrc
     else:RESOURCES += platform/other/Physique_other.qrc
 }
-CONFIG(debug) {
-     DEFINES += DEBUG
-     SOURCES += unittest/UnitTest.cpp
-     HEADERS += unittest/UnitTest.h
+build_pass:CONFIG(debug, debug|release) {
+    DEFINES += DEBUG
+    SOURCES += unittest/UnitTest.cpp
+    HEADERS += unittest/UnitTest.h
+    macx{
+        Bundle_Ressources.files = platform/mac/debug/en.lproj platform/mac/debug/fr.lproj
+        Bundle_Ressources.path = Contents/Resources
+        QMAKE_BUNDLE_DATA += Bundle_Ressources
+        TARGET = "$${TARGET} debug"
+    }else:TARGET = $${TARGET}d
+    OBJECTS_DIR = .obj/debug
+    MOC_DIR = .moc/debug
+    RCC_DIR = .rcc/debug
+}
+build_pass:CONFIG(release, debug|release){
+    macx{
+        Bundle_Ressources.files = platform/mac/release/en.lproj platform/mac/release/fr.lproj
+        Bundle_Ressources.path = Contents/Resources
+        QMAKE_BUNDLE_DATA += Bundle_Ressources
+    }
+
+    OBJECTS_DIR = .obj/release
+    MOC_DIR = .moc/release
+    RCC_DIR = .rcc/release
 }
 win32:RC_FILE = platform/windows/Physique_win_icon.rc
 DEFINES += XMLPARSER_INCLUDED

@@ -14,14 +14,12 @@
 	<string>Created by Qt/QMake</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleExecutable</key>
-	<string>Progress Table Generator</string>
 	<key>CFBundleIdentifier</key>
 	<string>guillaumeDidier.ProgressTableGenerator</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Progress Table Generator</string>
+	<string>@EXECUTABLE@</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleVersion</key>
