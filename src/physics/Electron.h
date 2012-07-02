@@ -30,6 +30,7 @@ public:
     virtual ElectronFactory* factory() const{return ElectronFactory::getInstance();}
     virtual QMap<const Element*, int> elementMap() const{return QMap<const Element*, int>();}
     virtual int charge() const {return -1;}
+    virtual State state() const {return NoState;}
 
 private:
     bool m_valid;

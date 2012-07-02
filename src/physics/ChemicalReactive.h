@@ -11,6 +11,10 @@
 class ChemicalReactive : public Reactive
 {
 public:
+    enum State {
+        NonMentioned, Gas, Liquid, Solid, Aqueous, NoState, OtherSoluted, OtherNonSoluted
+    };
+
     ChemicalReactive(bool * ok);
     virtual bool isValid() const =0;
     virtual QString toStr() const =0;
@@ -27,6 +31,7 @@ public:
     virtual ChemicalReactiveFactory* factory() const =0;
     virtual QMap<const Element*, int> elementMap() const =0;
     virtual int charge() const =0;
+    virtual State state() const =0;
 };
 
 typedef ChemicalReactive::ChemicalReactiveFactory ChemicalReactiveFactory;
