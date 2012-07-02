@@ -57,7 +57,7 @@ public:
     void initializePage();
 protected:
     Equation* m_equation;
-    QMap<Molecule, QDoubleSpinBox*> m_reactivesMatterQuantities;
+    QMap<MoleculeOld, QDoubleSpinBox*> m_reactivesMatterQuantities;
     QFormLayout* m_layout;
 };
 

@@ -13,7 +13,7 @@
 #include "Physique.h"
 
 #include "physics/Element.h"
-#include "physics/Molecule.h"
+#include "physics/MoleculeOld.h"
 #include "physics/ElementTable.h"
 
 
@@ -37,11 +37,11 @@ public:
     QString toStr() const;
     QString toHtml() const;
 
-    int stoechNumOf(Molecule mol) const;
+    int stoechNumOf(MoleculeOld mol) const;
     QSet<const Element*> elementSet() const;
 
-    QMap<Molecule, int> reactives();
-    QMap<Molecule, int> products();
+    QMap<MoleculeOld, int> reactives();
+    QMap<MoleculeOld, int> products();
 
 
     static const QString equation_rx();
@@ -49,17 +49,17 @@ public:
 
 protected:
     mutable bool m_validComputed, m_valid, m_equilibratedC, m_equilibrated;	//	for caching purposes, might be suppressed
-    QMap<Molecule, int> m_reactives, m_products;
+    QMap<MoleculeOld, int> m_reactives, m_products;
         //	respectively for reactives and	products
-    static QMap<Molecule, int> memberStrToDict(QString str, int start = 0);
-    static QString memberDictToStr(QMap<Molecule, int> map, bool html = false);
+    static QMap<MoleculeOld, int> memberStrToDict(QString str, int start = 0);
+    static QString memberDictToStr(QMap<MoleculeOld, int> map, bool html = false);
 };
 
 
 
 #ifdef DEBUG
-QDebug& operator<<(QDebug& out, const Molecule& mol);
+QDebug& operator<<(QDebug& out, const MoleculeOld& mol);
 QDebug& operator<<(QDebug& out, const Equation& eq);
 #endif	//	ifdef DEBUG
-bool moleculeLessThanUser(const Molecule& a, const Molecule& b);
+bool moleculeLessThanUser(const MoleculeOld& a, const MoleculeOld& b);
 #endif	//	ifndef Equation_H

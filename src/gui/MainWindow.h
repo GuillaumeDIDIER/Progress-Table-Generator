@@ -14,7 +14,7 @@
 
 #include "physics/Element.h"
 #include "physics/ElementTable.h"
-#include "physics/Molecule.h"
+#include "physics/MoleculeOld.h"
 #include "physics/Equation.h"
 
 #include "gui/MainMenuBar.h"

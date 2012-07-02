@@ -12,8 +12,8 @@
 
 #define EQUATION_MEMBER_RX "(\\d*((?:(?:[A-Z][a-z]{0,2}\\d*)|(?:\\((?:[A-Z][a-z]{0,2}\\d*)+\\)\\d*))+)(\\[\\d*(?:\\-|\\+)\\])?(?:\\(([a-z]{1,2})\\))? \\+ )*(\\d*((?:(?:[A-Z][a-z]{0,2}\\d*)|(?:\\((?:[A-Z][a-z]{0,2}\\d*)+\\)\\d*))+)(\\[\\d*(?:\\-|\\+)\\])?(?:\\(([a-z]{1,2})\\))?)"
 
-bool operator<(const Molecule& a, const Molecule& b); //	implemented in Equation.cpp
-bool moleculeLessThanUser(const Molecule& a, const Molecule& b);	//	idem
+bool operator<(const MoleculeOld& a, const MoleculeOld& b); //	implemented in Equation.cpp
+bool moleculeLessThanUser(const MoleculeOld& a, const MoleculeOld& b);	//	idem
     //	class MainWindow
 MainWindow::MainWindow(QWidget* parent) : QWizard(parent), m_equation(NULL) {
     setAttribute(Qt::WA_DeleteOnClose);
@@ -93,9 +93,9 @@ void MainWindow::accept(){
         eqTable->mergeCells(0, i+3, 1, 2);
     }
     int j = 0;
-    QList<Molecule> reactives = m_equation->reactives().keys();
+    QList<MoleculeOld> reactives = m_equation->reactives().keys();
     qSort(reactives.begin(), reactives.end(), moleculeLessThanUser);
-    QListIterator<Molecule> i1(reactives);
+    QListIterator<MoleculeOld> i1(reactives);
     QTextCharFormat previous = cursor.charFormat();
     cursor.setCharFormat(cellCharFormat);
     while (i1.hasNext()) {
@@ -120,9 +120,9 @@ void MainWindow::accept(){
     cursor.setBlockFormat(cellBlockFormat);
     cursor.insertText(QChar(0x2192), cellCharFormat);
 
-    QList<Molecule> products = m_equation->products().keys();
+    QList<MoleculeOld> products = m_equation->products().keys();
     qSort(products.begin(), products.end(), moleculeLessThanUser);
-    QListIterator<Molecule> i2(products);
+    QListIterator<MoleculeOld> i2(products);
     while (i2.hasNext()) {
         j += 5;
         cursor = eqTable->cellAt(0, j).firstCursorPosition();
@@ -478,10 +478,10 @@ void MatterQuantityPage::initializePage(){
         return;
     }
     m_equation = new Equation(*(main_wizard->equation()));
-    QMap<Molecule, int> moleculeStoechs(m_equation->reactives());
-    QList<Molecule> reactives(moleculeStoechs.keys());
+    QMap<MoleculeOld, int> moleculeStoechs(m_equation->reactives());
+    QList<MoleculeOld> reactives(moleculeStoechs.keys());
     qSort(reactives.begin(), reactives.end(), moleculeLessThanUser);
-    foreach(Molecule mol, reactives){
+    foreach(MoleculeOld mol, reactives){
         m_reactivesMatterQuantities[mol] = new QDoubleSpinBox();	//	GD tmp
         m_reactivesMatterQuantities[mol]->setRange(0, 1000000);
         registerField(mol.formula(), m_reactivesMatterQuantities[mol], "value", SIGNAL(valueChanged(double)));

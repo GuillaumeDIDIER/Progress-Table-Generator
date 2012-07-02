@@ -11,7 +11,7 @@
 
 #include "physics/Element.h"
 #include "physics/ElementTable.h"
-#include "physics/Molecule.h"
+#include "physics/MoleculeOld.h"
 #include "physics/Equation.h"
 
 #include "gui/MainMenuBar.h"
@@ -57,7 +57,7 @@ int main (int argc, char ** argv) {
     xmlFiles.append(":/" + xmlFileRoot);
     ElementTable::loadElementTable(xmlFiles);
 #endif	//	XMLPARSER_INCLUDED
-    Molecule::setPeriodicElementTable(&PeriodicTable);
+    MoleculeOld::setPeriodicElementTable(&PeriodicTable);
 #ifdef Q_OS_DARWIN
     app.setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif	//	Q_OS_DARWIN
