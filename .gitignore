@@ -1,6 +1,4 @@
 build
-release
-debug
 *.app
 moc_*
 qrc_*

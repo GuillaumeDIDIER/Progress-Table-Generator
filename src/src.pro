@@ -14,11 +14,6 @@ DESTDIR = ../bin
 DEPENDPATH += .
 INCLUDEPATH += . "../include"
 
-#message("objectdir=$$OBJECT_DIR")
-#OBJECTS_DIR = debug/.obj
-#MOC_DIR = debug/.moc
-#RCC_DIR = debug/.rcc
-
 # Input
 GuiSources += gui/MainMenuBar.cpp gui/MainWindow.cpp gui/ProgressTableW.cpp
 PhysicsSources += physics/Element.cpp physics/ElementTable.cpp physics/Molecule.cpp physics/Equation.cpp
@@ -35,9 +30,6 @@ RESOURCES += Physique.qrc
 macx {
     include(../Physique_mac.pri)
     QMAKE_INFO_PLIST = platform/mac/InfoPlist-Physique.plist
-    Bundle_Ressources.files = platform/mac/en.lproj platform/mac/fr.lproj
-    Bundle_Ressources.path = Contents/Resources
-    QMAKE_BUNDLE_DATA += Bundle_Ressources
     RESOURCES  += platform/mac/Physique_mac.qrc
     ICON = platform/mac/Erlenmeyer.icns
 }
@@ -49,15 +41,26 @@ build_pass:CONFIG(debug, debug|release) {
     DEFINES += DEBUG
     SOURCES += unittest/UnitTest.cpp
     HEADERS += unittest/UnitTest.h
-    TARGET = $${TARGET}_debug
-    OBJECTS_DIR = debug/.obj
-    MOC_DIR = debug/.moc
-    RCC_DIR = debug/.rcc
+    macx{
+        Bundle_Ressources.files = platform/mac/debug/en.lproj platform/mac/debug/fr.lproj
+        Bundle_Ressources.path = Contents/Resources
+        QMAKE_BUNDLE_DATA += Bundle_Ressources
+        TARGET = "$${TARGET} debug"
+    }else:TARGET = $${TARGET}d
+    OBJECTS_DIR = .obj/debug
+    MOC_DIR = .moc/debug
+    RCC_DIR = .rcc/debug
 }
 build_pass:CONFIG(release, debug|release){
-    OBJECTS_DIR = release/.obj
-    MOC_DIR = release/.moc
-    RCC_DIR = release/.rcc
+    macx{
+        Bundle_Ressources.files = platform/mac/release/en.lproj platform/mac/release/fr.lproj
+        Bundle_Ressources.path = Contents/Resources
+        QMAKE_BUNDLE_DATA += Bundle_Ressources
+    }
+
+    OBJECTS_DIR = .obj/release
+    MOC_DIR = .moc/release
+    RCC_DIR = .rcc/release
 }
 win32:RC_FILE = platform/windows/Physique_win_icon.rc
 DEFINES += XMLPARSER_INCLUDED
