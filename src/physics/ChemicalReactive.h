@@ -12,7 +12,7 @@ class ChemicalReactive : public Reactive
 {
 public:
     enum State {
-        NonMentioned, Gas, Liquid, Solid, Aqueous, NoState, OtherSoluted, OtherNonSoluted
+        Invalid=0, NonMentioned, Gas, Liquid, Solid, Aqueous, NoState, OtherSoluted
     };
 
     ChemicalReactive(bool * ok);
@@ -25,7 +25,9 @@ public:
         virtual ~ChemicalReactiveFactory();
     public:
         virtual ChemicalReactive * buildReactive(QString formula) const =0; // Return nul pointer if not possible.
-        virtual QString reactiveRX() const =0; // returns the regExp validating the reactives built by the factory.
+        virtual QString reactiveRX() const =0;
+        // returns the regExp validating the string representation of the reactives built by the factory.
+        // it may validate some incorect string reppresentations.
     };
 
     virtual ChemicalReactiveFactory* factory() const =0;

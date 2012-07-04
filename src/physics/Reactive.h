@@ -18,7 +18,9 @@ public:
         virtual ~ReactiveFactory();
     public:
         virtual Reactive * buildReactive(QString formula) const =0; // Return nul pointer if not possible.
-        virtual QString reactiveRX() const =0; // returns the regExp validating the reactives built by the factory.
+        virtual QString reactiveRX() const =0;
+        // returns the regExp validating the string representation of the reactives built by the factory.
+        // it may validate some incorect string reppresentations.
     };
 
     virtual ReactiveFactory* factory() const =0;

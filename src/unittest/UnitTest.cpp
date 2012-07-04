@@ -8,18 +8,17 @@
  */
 
 #include "UnitTest.h"
-	//	private test functions prototypes
-
-	//	the main UnitTest (the only symbol exported)
+    //	private test functions prototypes
+bool testMolecules();
+    //	the main UnitTest (the only symbol exported)
 bool RunUnitTests(){
-	bool testsResults = true;
-		//	naught to do for the moment.
-		//	be free to add your own tests.
-		//	(in private test functions)
-	/*
-	 testsResults = testResults && yourTestFunc();
-	 */
-	return testsResults;
-}
+    bool testsResults = true;
+        //	naught to do for the moment.
+        //	be free to add your own tests.
+        //	(in private test functions)
+    /*
+     testsResults = testsResults && yourTestFunc();
+     */
 
-	//	Private funcs implementations
+    return testsResults;
+}

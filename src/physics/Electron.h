@@ -21,7 +21,9 @@ public:
         virtual ~ElectronFactory();
     public:
         virtual Electron * buildReactive(QString formula="e-") const; // Return nul pointer if not possible.
-        virtual QString reactiveRX() const{return Electron::reactiveRX();} // returns the regExp validating the string representation of the reactives built by the factory.
+        virtual QString reactiveRX() const{return Electron::reactiveRX();}
+        // returns the regExp validating the string representation of the reactives built by the factory.
+        // it may validate some incorect string reppresentations.
         static ElectronFactory* getInstance();
     private:
         static ElectronFactory* instance;

@@ -15,7 +15,14 @@ public:
     virtual QString toStr() const{return m_formula;}
     virtual QString toHtml() const;
     virtual bool setFormula(QString newFormula);
-    static QString reactiveRX(){return QString("");}
+    static QString reactiveRX(){return QString(
+"(?:(?:(?:[A-Z][a-z]{0,2})|(?:\\([A-Z][a-z]{0,2})|\\))\\d*)*"   //  Mainformula
+"(?:\\[\\d*(?:\\-|\\+)\\])?(?:\\(([a-z]{1,2})\\))?(?:\\[\\d*(?:\\-|\\+)\\])?");}    //  charge and state
+    // returns the regExp validating the string representation of the reactives the class represents.
+    // it may validate some incorect string reppresentations.
+
+    static ElementTable * getPeriodicElementTable();
+    static void setPeriodicElementTable(ElementTable* pTable);
 
     class MoleculeFactory : public ChemicalReactiveFactory {
     protected:
@@ -23,7 +30,9 @@ public:
         virtual ~MoleculeFactory();
     public:
         virtual Molecule * buildReactive(QString formula) const; // Return nul pointer if not possible.
-        virtual QString reactiveRX() const{return Molecule::reactiveRX();} // returns the regExp validating the string representation of the reactives built by the factory.
+        virtual QString reactiveRX() const{return Molecule::reactiveRX();}
+                // returns the regExp validating the string representation of the reactives built by the factory.
+                // it may validate some incorect string reppresentations.
         static MoleculeFactory* getInstance();
     private:
         static MoleculeFactory* instance;
@@ -37,10 +46,14 @@ private:
     QString m_formula;
     int m_charge;
     State m_state;
-    bool m_error; // in case an operation failed and left the molecule in an incorrect state
-
+    static ElementTable * c_PeriodicElementTable;
+    QString m_state_str;
 };
 
 typedef Molecule::MoleculeFactory MoleculeFactory;
+#ifdef DEBUG
+QDebug operator<<(QDebug out, const Molecule & mol);
+#endif
+
 
 #endif // MOLECULE_H
