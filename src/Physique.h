@@ -41,27 +41,27 @@
  *	Physique.qrc : the project built-in resources
  *	Physique_[mac/other].qrc : built-in resources for mac or pther platforms
  *	Physique.[ts/qm] : Qt traduction files [sources/compiled]
- *	
+ *
  *	Physique_win_icon.rc : windows resources for setting the icon on the W system
  *
  *	Other Files :
  *		Element.xml : XML Periodic Element Table
- *		Element.xsd : XML Schema of the XML Peridic Element Table 
- *		
+ *		Element.xsd : XML Schema of the XML Peridic Element Table
+ *
  *		Images :
  *			Erlenmeyer - 3232px, Erlenmeyer - Version 1, Erlenmeyer.icns, Erlenmeyer.ico :
  *				Application's Icon(mac=.icns et win=.ico) and its sources(png)
  *			Mac/, croix.png, question.png, tick.png : images used by the application
  *			Projet de Physique/ : Unused images
- *		
+ *
  *		Info.plist, InfoPlist-Physique.plist : the mac Application Bundle Info.plist
  *
  *		Todo/ : things to do
  *		Todo/done/ : things that were to do and have been done.
  */
 #ifndef VERSION
-#define VERSION "0.1.0"
-	//	Changes must reflect those in Physique.pro and InfoPlist-Physique.plist
+#define VERSION "0.2"
+    //	Changes must reflect those in Physique.pro and InfoPlist-Physique.plist
 #endif // ifndef VERSION
 
 
