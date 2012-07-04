@@ -3,7 +3,7 @@
  *  Physique
  *
  *  Created by Guillaume DIDIER on 15/04/11.
- *  Copyright 2011. All rights reserved.
+ *  Copyright 2011.
  *
  */
 
@@ -13,21 +13,21 @@
 #include "Physique.h"
 
 class MainMenuBar : public QMenuBar {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	MainMenuBar(QWidget* parent);
-	virtual ~MainMenuBar();
+    MainMenuBar(QWidget* parent);
+    virtual ~MainMenuBar();
 public slots:
-	void newWizard();
-	void about();
-	void aboutQt();
-	void setCopy(bool copy);
-	void copy();
+    void newWizard();
+    void about();
+    void aboutQt();
+    void setCopy(bool copy);
+    void copy();
 signals:
-	void copyRequested();
+    void copyRequested();
 protected:
-	QMap<QString, QMenu*> m_menuList;
-	QMap<QString, QAction*> m_actionList;
+    QMap<QString, QMenu*> m_menuList;
+    QMap<QString, QAction*> m_actionList;
 };
 
 #endif

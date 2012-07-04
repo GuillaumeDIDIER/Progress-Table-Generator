@@ -2,8 +2,8 @@
  *  ProgressTableW.cpp
  *  Physique
  *
- *  Created by Guillaulme DIDIER on 15/04/11.
- *  Copyright 2011. All rights reserved.
+ *  Created by Guillaume DIDIER on 15/04/11.
+ *  Copyright 2011.
  *
  */
 

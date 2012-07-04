@@ -1,3 +1,12 @@
+/*
+ *  MainWindow_p.h
+ *  Physique
+ *
+ *  Created by Guillaume DIDIER on 15/04/11.
+ *  Copyright 2011.
+ *
+ */
+
 #ifndef MAINWINDOW_P_H
 #define MAINWINDOW_P_H
 

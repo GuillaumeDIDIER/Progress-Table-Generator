@@ -3,7 +3,7 @@
  *  Physique
  *
  *  Created by Guillaume DIDIER on 15/04/11.
- *  Copyright 2011. All rights reserved.
+ *  Copyright 2011.
  *	Equation class implementation
  */
 

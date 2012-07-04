@@ -1,3 +1,12 @@
+/*
+ *  Electron.cpp
+ *  Physique
+ *
+ *  Created by Guillaume DIDIER on 2/07/12.
+ *  Copyright 2012.
+ *
+ */
+
 #include "Electron.h"
 
 ElectronFactory* ElectronFactory::instance = (ElectronFactory*)0;

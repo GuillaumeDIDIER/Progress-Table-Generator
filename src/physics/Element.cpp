@@ -3,7 +3,7 @@
  *  Physique
  *
  *  Created by Guillaume DIDIER on 18/02/11.
- *  Copyright 2011. All rights reserved.
+ *  Copyright 2011.
  *	Element class implementation
  */
 

@@ -3,7 +3,7 @@
  *  Physique
  *
  *  Created by Guillaume DIDIER on 03/04/11.
- *  Copyright 2011. All rights reserved.
+ *  Copyright 2011.
  *	UnitTests header
  */
 #ifndef UnitTest_H

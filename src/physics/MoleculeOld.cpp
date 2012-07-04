@@ -1,10 +1,10 @@
 /*
- *  Molecule.cpp
+ *  MoleculeOld.cpp
  *  Physique
  *
  *  Created by Guillaume DIDIER on 23/03/11.
  *  Copyright 2011. All rights reserved.
- * Molecule class implementation
+ *  MoleculeOld class implementation
  */
 
 #include "MoleculeOld.h"

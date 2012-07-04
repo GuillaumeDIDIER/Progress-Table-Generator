@@ -1,3 +1,13 @@
+/*
+ *  ChemicalReactive.h
+ *  Physique
+ *
+ *  Created by Guillaume DIDIER on 29/06/12.
+ *  Copyright 2012.
+ *	ChemicalReactive class header
+ */
+
+
 #ifndef CHEMICALREACTIVE_H
 #define CHEMICALREACTIVE_H
 

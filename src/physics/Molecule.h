@@ -1,3 +1,13 @@
+/*
+ *  Molecule.h
+ *  Physique
+ *
+ *  Created by Guillaume DIDIER on 2/07/12.
+ *  Copyright 2012.
+ *	Molecule class header
+ */
+
+
 #ifndef MOLECULE_H
 #define MOLECULE_H
 

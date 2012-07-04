@@ -1,3 +1,13 @@
+/*
+ *  Electron.h
+ *  Physique
+ *
+ *  Created by Guillaume DIDIER on 2/07/12.
+ *  Copyright 2012.
+ *	Electron class header
+ */
+
+
 #ifndef ELECTRON_H
 #define ELECTRON_H
 

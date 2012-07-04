@@ -1,3 +1,13 @@
+/*
+ *  Reactive.h
+ *  Physique
+ *
+ *  Created by Guillaume DIDIER on 29/06/12.
+ *  Copyright 2012.
+ *	Reactive class header
+ */
+
+
 #ifndef REACTIVE_H
 #define REACTIVE_H
 

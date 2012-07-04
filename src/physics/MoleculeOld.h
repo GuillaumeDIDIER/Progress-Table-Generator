@@ -1,10 +1,10 @@
 /*
- *  Molecule.h
+ *  MoleculeOld.h
  *  Physique
  *
  *  Created by Guillaume DIDIER on 23/03/11.
- *  Copyright 2011. All rights reserved.
- *	Molecule class header
+ *  Copyright 2011.
+ *	MoleculeOld class header
  */
 
 #ifndef Molecule_H

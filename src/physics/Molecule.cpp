@@ -1,3 +1,12 @@
+/*
+ *  Molecule.cpp
+ *  Physique
+ *
+ *  Created by Guillaume DIDIER on 29/06/12.
+ *  Copyright 2012.
+ *
+ */
+
 #include "Molecule.h"
 
 MoleculeFactory* MoleculeFactory::instance = (MoleculeFactory*)0;

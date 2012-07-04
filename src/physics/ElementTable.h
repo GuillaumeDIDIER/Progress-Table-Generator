@@ -3,7 +3,7 @@
  *  Physique
  *
  *  Created by Guillaume DIDIER on 19/03/11.
- *  Copyright 2011. All rights reserved.
+ *  Copyright 2011.
  *	ElementTable class header
  */
 #ifndef ElementTable_H
