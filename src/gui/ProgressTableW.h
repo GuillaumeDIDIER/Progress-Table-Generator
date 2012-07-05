@@ -15,7 +15,7 @@
 #include "physics/Element.h"
 #include "physics/ElementTable.h"
 #include "physics/MoleculeOld.h"
-#include "physics/Equation.h"
+#include "physics/EquationOld.h"
 
 #include "gui/MainMenuBar.h"
 
@@ -23,7 +23,7 @@ class ProgressTableW : public QDialog {
     Q_OBJECT
 public:
     ProgressTableW(QWidget* parent = 0);
-    ProgressTableW(QTextDocument* table, const Equation & eq = Equation(), QWidget* parent = 0);
+    ProgressTableW(QTextDocument* table, const EquationOld & eq = EquationOld(), QWidget* parent = 0);
     virtual ~ProgressTableW();
 
 
@@ -31,7 +31,7 @@ public:
 protected:
     QTextEdit* m_textEdit;
     QTextDocument* m_document;
-    Equation m_equation;
+    EquationOld m_EquationOld;
     MainMenuBar * m_menubar;
 };
 

@@ -1,10 +1,10 @@
 /*
- *  Equation.cpp
+ *  EquationOld.cpp
  *  Physique
  *
  *  Created by Guillaume DIDIER on 15/04/11.
  *  Copyright 2011.
- *	Equation class implementation
+ *	EquationOld class implementation
  */
 
 #include "Physique.h"
@@ -12,7 +12,7 @@
 #include "physics/Element.h"
 #include "physics/ElementTable.h"
 #include "physics/MoleculeOld.h"
-#include "physics/Equation.h"
+#include "physics/EquationOld.h"
 
 //#include <../../../Libraries/rmath/Rational.hpp>
 //#include <../../../Libraries/rmath/MathsFuncs.hpp>
@@ -20,7 +20,7 @@
 #include<boost/rational.hpp>
 
     //	class const variables
-const QString Equation::equation_rx(){return QString("(") + MoleculeOld::nb_rx()  + QString(" *") + MoleculeOld::molecule_rx() + QString(" \\+ )*(") + MoleculeOld::nb_rx() + QString(" *") + MoleculeOld::molecule_rx() + QString(")");}
+const QString EquationOld::EquationOld_rx(){return QString("(") + MoleculeOld::nb_rx()  + QString(" *") + MoleculeOld::molecule_rx() + QString(" \\+ )*(") + MoleculeOld::nb_rx() + QString(" *") + MoleculeOld::molecule_rx() + QString(")");}
     //	prototypes
 #ifdef DEBUG
 QDebug& operator<<(QDebug& out, const boost::rational<int> & rat);
@@ -35,22 +35,22 @@ bool moleculeLessThanUser(const MoleculeOld& a, const MoleculeOld& b){
     return a.order() < b.order();
 }
 
-    //	class Equation
+    //	class EquationOld
         //	constructors
             //	default constructor
-Equation::Equation() : m_validComputed(false), m_equilibratedC(false)
+EquationOld::EquationOld() : m_validComputed(false), m_equilibratedC(false)
 {
         //	naught to do
 }
             //	copy consructor
-Equation::Equation(const Equation& other) : m_validComputed(other.m_validComputed), m_valid(other.m_valid),
+EquationOld::EquationOld(const EquationOld& other) : m_validComputed(other.m_validComputed), m_valid(other.m_valid),
                                             m_equilibratedC(other.m_equilibratedC), m_equilibrated(other.m_equilibrated),
                                             m_reactives(other.m_reactives), m_products(other.m_products)
 {
         //	all has been done above
 }
             //	designated constructor
-Equation::Equation(QString reactivesStr, QString productsStr) : m_validComputed(false), m_equilibratedC(false)
+EquationOld::EquationOld(QString reactivesStr, QString productsStr) : m_validComputed(false), m_equilibratedC(false)
 {
     m_reactives = memberStrToDict(reactivesStr);
     QList<MoleculeOld> tmp = m_reactives.keys();
@@ -59,13 +59,13 @@ Equation::Equation(QString reactivesStr, QString productsStr) : m_validComputed(
 
 }
         // destructor
-Equation::~Equation(){
+EquationOld::~EquationOld(){
         //	naught to do
 }
         // public
             //	instance method equilibrate
             //	todo : add comments
-bool Equation::equilibrate(){
+bool EquationOld::equilibrate(){
         //	init solver "row header" with the element set
     QList<const Element*> elements = elementSet().toList();
     int rowCount = elements.length();
@@ -74,22 +74,22 @@ bool Equation::equilibrate(){
     qSort(molecules.begin(), molecules.end(), moleculeLessThanUser);
     int columnCount = molecules.length();
         //	now we can create the solver matrix, with the right size
-    QList<QList<boost::rational<int> > > equationGaussSolver(QVector<QList<boost::rational<int> > >(rowCount + 2, QVector<boost::rational<int> >(columnCount + 1, 0).toList()).toList());
+    QList<QList<boost::rational<int> > > EquationOldGaussSolver(QVector<QList<boost::rational<int> > >(rowCount + 2, QVector<boost::rational<int> >(columnCount + 1, 0).toList()).toList());
                                         //	matrix used for solving, not very elegant and optimised but it works.
         //	which we can now fill in
     for (int i = 0; i < columnCount; ++i) {			//	for each colmun
         MoleculeOld molTmp = molecules[i];				//	the molecule which it represents
         foreach(const Element* element, elements){	//	for for each element
-            equationGaussSolver[elements.indexOf(element)][i] = molTmp.elementCount(element);
+            EquationOldGaussSolver[elements.indexOf(element)][i] = molTmp.elementCount(element);
         }											//	its count
-        equationGaussSolver[rowCount][i] = molTmp.charge();
+        EquationOldGaussSolver[rowCount][i] = molTmp.charge();
     }												//	the molecule charge
         //	shouldn't be needed
     for (int j = 0; j < rowCount + 1; ++j) {		//	the last column
-        equationGaussSolver[j][columnCount] = 0;	//	initialized to zero
+        EquationOldGaussSolver[j][columnCount] = 0;	//	initialized to zero
     }												//	the last line
-    equationGaussSolver[rowCount + 1][0] = 1;		// first molecule count = 1
-    equationGaussSolver[rowCount + 1][columnCount] = 1;
+    EquationOldGaussSolver[rowCount + 1][0] = 1;		// first molecule count = 1
+    EquationOldGaussSolver[rowCount + 1][columnCount] = 1;
 
         //	The matrix is now ready for actual solving
 
@@ -105,42 +105,42 @@ bool Equation::equilibrate(){
         int maxRow = i;							//	maxrow = y
         for (int i2 = i+1; i2 < h; ++i2) {	//	for y2 in range(y+1, h):    # Find max pivot
                                             //		if abs(m[y2][y]) > abs(m[maxrow][y]):
-            if (abs(equationGaussSolver[i2][i]) > abs(equationGaussSolver[maxRow][i]))
+            if (abs(EquationOldGaussSolver[i2][i]) > abs(EquationOldGaussSolver[maxRow][i]))
                 maxRow = i2;				//			maxrow = y2
         }
-        equationGaussSolver.swap(maxRow, i);//	(m[y], m[maxrow]) = (m[maxrow], m[y])
+        EquationOldGaussSolver.swap(maxRow, i);//	(m[y], m[maxrow]) = (m[maxrow], m[y])
                                             //	if abs(m[y][y]) <= eps:     # Singular?
-        if (abs(equationGaussSolver[i][i]) == 0) {
+        if (abs(EquationOldGaussSolver[i][i]) == 0) {
             return false;					//		return False
         }
         for (int i2 = i+1; i2 < h; ++i2) {	//	for y2 in range(y+1, h):    # Eliminate column y
-            boost::rational<int> c = equationGaussSolver[i2][i] / equationGaussSolver[i][i];
+            boost::rational<int> c = EquationOldGaussSolver[i2][i] / EquationOldGaussSolver[i][i];
                 //		c = m[y2][y] / m[y][y]
             for (int j = i; j < w; ++j)		//		for x in range(y, w):
-                equationGaussSolver[i2][j] -= equationGaussSolver[i][j] * c;
+                EquationOldGaussSolver[i2][j] -= EquationOldGaussSolver[i][j] * c;
                 //			m[y2][x] -= m[y][x] * c
         }
     }
     for (int i = std::min(h, w -1) - 1; i > -1; --i) {		//for y in range(h-1, 0-1, -1): # Backsubstitute
-        boost::rational<int> c = equationGaussSolver[i][i];
+        boost::rational<int> c = EquationOldGaussSolver[i][i];
             //	c  = m[y][y]
         for (int i2 = 0; i2 < i; ++i2) {		//	for y2 in range(0,y):
             for (int j = w - 1; j > i - 1; --j) {
                     //		for x in range(w-1, y-1, -1):
-                equationGaussSolver[i2][j] -= equationGaussSolver[i][j] * equationGaussSolver[i2][i] / c;
+                EquationOldGaussSolver[i2][j] -= EquationOldGaussSolver[i][j] * EquationOldGaussSolver[i2][i] / c;
                     //			m[y2][x] -=  m[y][x] * m[y2][y] / c
             }
         }
-        equationGaussSolver[i][i] /= c;		//	m[y][y] /= c
+        EquationOldGaussSolver[i][i] /= c;		//	m[y][y] /= c
         for (int j = 0; j < w; ++j)			//	for x in range(y, w):       # Normalize row y
-            equationGaussSolver[i][j] /= c;	//		m[y][x] /= c
+            EquationOldGaussSolver[i][j] /= c;	//		m[y][x] /= c
     }
 
 
         //	solving is now done ; we just need to extract results
     QMap<MoleculeOld, boost::rational<int> > moleculesStoechs;	//	a dict of molecule stoech, negative fo products
     for (int i = 0; i < columnCount; ++i)		//	filling it
-        moleculesStoechs[molecules[i]] = equationGaussSolver[i][columnCount];
+        moleculesStoechs[molecules[i]] = EquationOldGaussSolver[i][columnCount];
     QMutableMapIterator<MoleculeOld, boost::rational<int> > i(moleculesStoechs);	//	for looping on it
     m_reactives.clear();	//	reseting thoses
     m_products.clear();
@@ -168,7 +168,7 @@ bool Equation::equilibrate(){
 }
             //	instance method is valid
             //	todo : add comments
-bool Equation::isValid() const{
+bool EquationOld::isValid() const{
     if (!m_validComputed) {
         m_validComputed = true;
         if (isEmpty()){
@@ -201,7 +201,7 @@ bool Equation::isValid() const{
 
 }
 
-bool Equation::isEquilibrated() const{
+bool EquationOld::isEquilibrated() const{
     m_equilibratedC = true;
     m_equilibrated = true;
     QSet<const Element*> elementSet;
@@ -224,31 +224,31 @@ bool Equation::isEquilibrated() const{
     return m_equilibrated;
 }
 
-QString Equation::reactivesStr(bool html) const{
+QString EquationOld::reactivesStr(bool html) const{
     return memberDictToStr(m_reactives, html);
 }
 
-QString Equation::productsStr(bool html) const{
+QString EquationOld::productsStr(bool html) const{
     return memberDictToStr(m_products, html);
 }
 
-QString Equation::toStr() const{
+QString EquationOld::toStr() const{
     return reactivesStr(false) + ' ' + QChar(0x2192) + ' ' + productsStr(false);
 }
 
-QString Equation::toHtml() const{
+QString EquationOld::toHtml() const{
     return reactivesStr(true) + ' ' + QChar(0x2192) + ' ' + productsStr(true);
 
 }
 
-int Equation::stoechNumOf(MoleculeOld mol) const{
+int EquationOld::stoechNumOf(MoleculeOld mol) const{
     int result = 0;
     result += m_reactives.value(mol, 0);
     result += m_products.value(mol, 0);
     return result;
 }
 
-QSet<const Element*> Equation::elementSet() const{
+QSet<const Element*> EquationOld::elementSet() const{
     QSet<const Element*> elementSet;
     foreach(MoleculeOld mol, m_reactives.keys()){
         elementSet += mol.elementSet();
@@ -259,16 +259,16 @@ QSet<const Element*> Equation::elementSet() const{
     return elementSet;
 }
 
-QMap<MoleculeOld, int> Equation::reactives(){
+QMap<MoleculeOld, int> EquationOld::reactives(){
     return m_reactives;
 }
 
-QMap<MoleculeOld, int> Equation::products(){
+QMap<MoleculeOld, int> EquationOld::products(){
     return m_products;
 }
 
     //	private methods
-QMap<MoleculeOld, int> Equation::memberStrToDict(QString str, int start){
+QMap<MoleculeOld, int> EquationOld::memberStrToDict(QString str, int start){
     QStringList moleculesStrs = str.split(QRegExp(" +\\+ +"));
     QRegExp stoechNumRX("^\\d*");
     QMap<MoleculeOld, int> moleculeDict;
@@ -288,7 +288,7 @@ QMap<MoleculeOld, int> Equation::memberStrToDict(QString str, int start){
     return moleculeDict;
 }
 
-QString Equation::memberDictToStr(QMap<MoleculeOld, int> map, bool html){
+QString EquationOld::memberDictToStr(QMap<MoleculeOld, int> map, bool html){
     QList<MoleculeOld> molList = map.keys();
     qStableSort(molList.begin(), molList.end(), moleculeLessThanUser);
     QListIterator<MoleculeOld> i(molList);
@@ -305,7 +305,7 @@ QString Equation::memberDictToStr(QMap<MoleculeOld, int> map, bool html){
 }
 
         //	friends
-bool operator==(const Equation& a, const Equation& b){
+bool operator==(const EquationOld& a, const EquationOld& b){
     return (a.m_reactives == b.m_reactives) && (a.m_products == b.m_products);
 }
 #ifdef DEBUG
@@ -314,7 +314,7 @@ QDebug& operator<<(QDebug& out, const boost::rational<int> & rat){
     return out;
 }
 
-QDebug& operator<<(QDebug& out, const Equation& eq){
+QDebug& operator<<(QDebug& out, const EquationOld& eq){
     out << eq.toStr();
     return out;
 }

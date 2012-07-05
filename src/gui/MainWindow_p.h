@@ -18,14 +18,14 @@ public:
     IntroPage(QWidget* parent = 0);
     virtual ~IntroPage();
     void initializePage();
-    protected:
-QLabel* m_introLabel;
+protected:
+    QLabel* m_introLabel;
 };
 
 class EquationPage : public QWizardPage {
 Q_OBJECT
 public:
-EquationPage(QWidget* parent = 0);
+    EquationPage(QWidget* parent = 0);
     virtual ~EquationPage();
     void initializePage();
     bool validatePage();
@@ -51,7 +51,7 @@ protected:
     void setState(State state);
     State updateState();
     QVBoxLayout* m_mainLayout;
-    Equation* m_equation;
+    EquationOld* m_equation;
     QLabel* m_stateLabelImg,* m_eqStr,* m_stateLabel;
     QPushButton* m_equilibrate;
     State m_state;
@@ -65,7 +65,7 @@ public:
     virtual ~MatterQuantityPage();
     void initializePage();
 protected:
-    Equation* m_equation;
+    EquationOld* m_equation;
     QMap<MoleculeOld, QDoubleSpinBox*> m_reactivesMatterQuantities;
     QFormLayout* m_layout;
 };

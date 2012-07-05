@@ -28,12 +28,12 @@ INCLUDEPATH += "include"
 
 # Input
 #GuiSources += MainMenuBar.cpp MainWindow.cpp ProgressTableW.cpp
-#PhysicsSources += Element.cpp ElementTable.cpp Molecule.cpp Equation.cpp
+#PhysicsSources += Element.cpp ElementTable.cpp Molecule.cpp EquationOld.cpp
 #SOURCES += main.cpp $$GuiSources $$PhysicsSources
 
 #PrivateGuiHeader = MainWindow_p.h
 #GuiHeaders += MainMenuBar.h MainWindow.h ProgressTableW.h  $$PrivateGuiHeader
-#PhysicsHeaders += Element.h ElementTable.h Molecule.h Equation.h
+#PhysicsHeaders += Element.h ElementTable.h Molecule.h EquationOld.h
 #HEADERS += Physique.h $$GuiHeaders $$PhysicsHeaders
 #TRANSLATIONS += Physique_fr.ts
 

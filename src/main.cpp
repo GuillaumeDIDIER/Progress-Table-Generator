@@ -13,7 +13,7 @@
 #include "physics/ElementTable.h"
 #include "physics/MoleculeOld.h"
 #include "physics/Molecule.h"
-#include "physics/Equation.h"
+#include "physics/EquationOld.h"
 
 #include "gui/MainMenuBar.h"
 #include "gui/MainWindow.h"

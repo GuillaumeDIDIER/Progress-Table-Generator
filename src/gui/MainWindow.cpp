@@ -10,9 +10,9 @@
 #include "gui/MainWindow.h"
 #include "gui/MainWindow_p.h"
 
-#define EQUATION_MEMBER_RX "(\\d*((?:(?:[A-Z][a-z]{0,2}\\d*)|(?:\\((?:[A-Z][a-z]{0,2}\\d*)+\\)\\d*))+)(\\[\\d*(?:\\-|\\+)\\])?(?:\\(([a-z]{1,2})\\))? \\+ )*(\\d*((?:(?:[A-Z][a-z]{0,2}\\d*)|(?:\\((?:[A-Z][a-z]{0,2}\\d*)+\\)\\d*))+)(\\[\\d*(?:\\-|\\+)\\])?(?:\\(([a-z]{1,2})\\))?)"
+#define EquationOld_MEMBER_RX "(\\d*((?:(?:[A-Z][a-z]{0,2}\\d*)|(?:\\((?:[A-Z][a-z]{0,2}\\d*)+\\)\\d*))+)(\\[\\d*(?:\\-|\\+)\\])?(?:\\(([a-z]{1,2})\\))? \\+ )*(\\d*((?:(?:[A-Z][a-z]{0,2}\\d*)|(?:\\((?:[A-Z][a-z]{0,2}\\d*)+\\)\\d*))+)(\\[\\d*(?:\\-|\\+)\\])?(?:\\(([a-z]{1,2})\\))?)"
 
-bool operator<(const MoleculeOld& a, const MoleculeOld& b); //	implemented in Equation.cpp
+bool operator<(const MoleculeOld& a, const MoleculeOld& b); //	implemented in EquationOld.cpp
 bool moleculeLessThanUser(const MoleculeOld& a, const MoleculeOld& b);	//	idem
     //	class MainWindow
 MainWindow::MainWindow(QWidget* parent) : QWizard(parent), m_equation(NULL) {
@@ -34,18 +34,18 @@ MainWindow::MainWindow(QWidget* parent) : QWizard(parent), m_equation(NULL) {
 
 }
 MainWindow::~MainWindow(){
-    if(m_equation)	//	deleting the equation on the heap if it exists
+    if(m_equation)	//	deleting the EquationOld on the heap if it exists
         delete m_equation;
 }
 
-const Equation* MainWindow::equation() const{
+const EquationOld* MainWindow::equation() const{
     return m_equation;	//	we can return it safely as we return a const *
 }
 
-void MainWindow::setEquation(Equation* eq){
+void MainWindow::setEquation(EquationOld* eq){
     if (m_equation)	//	if the pointer isn't NULL
-        delete m_equation;	//	we delete the old equation
-    m_equation = new Equation(*eq);	//	and replace it by a copy of the new Equation
+        delete m_equation;	//	we delete the old EquationOld
+    m_equation = new EquationOld(*eq);	//	and replace it by a copy of the new EquationOld
 }
     //	work to do
 void MainWindow::accept(){
@@ -80,7 +80,7 @@ void MainWindow::accept(){
     cellBlockFormat.setNonBreakableLines(true);
     QTextCharFormat cellCharFormat;
     cellCharFormat.setFontUnderline(false);
-            //	equation writting (into a sub table, for formatting purposes
+            //	EquationOld writting (into a sub table, for formatting purposes
     cursor = mainTable->cellAt(0, 2).firstCursorPosition();
     QTextTableFormat eqTableFormat;
     int eqTableColCount = (columnCount - 2)*3 + (columnCount - 3)*2;
@@ -271,7 +271,7 @@ IntroPage::~IntroPage(){
 void IntroPage::initializePage(){
         //	naught to do
 }
-    //	Equation Page
+    //	EquationOld Page
 EquationPage::EquationPage(QWidget* parent) : QWizardPage(parent){
     setTitle(tr("Equation of the Chemical Reaction"));
     setSubTitle(tr("Please enter the equation of your chemical reaction.\nPlease note that electron (e-) is not yet supported"));
@@ -279,7 +279,7 @@ EquationPage::EquationPage(QWidget* parent) : QWizardPage(parent){
 
     m_reactives = new QLineEdit();
     m_reactives->setPlaceholderText(tr("Reactives"));
-    m_reactives->setValidator(new QRegExpValidator(QRegExp(Equation::equation_rx()), this));
+    m_reactives->setValidator(new QRegExpValidator(QRegExp(EquationOld::EquationOld_rx()), this));
     m_mainLayout->addWidget(m_reactives);
 
     m_arrow = new QLabel(QChar(0x2192));
@@ -287,7 +287,7 @@ EquationPage::EquationPage(QWidget* parent) : QWizardPage(parent){
 
     m_products = new QLineEdit();
     m_products->setPlaceholderText(tr("Products"));
-    m_products->setValidator(new QRegExpValidator(QRegExp(Equation::equation_rx()), this));
+    m_products->setValidator(new QRegExpValidator(QRegExp(EquationOld::EquationOld_rx()), this));
     m_mainLayout->addWidget(m_products);
 }
 
@@ -308,7 +308,7 @@ bool EquationPage::validatePage(){
         QMessageBox::critical(this, "Error", "MainWizard Cast Error");
         return false;
     }
-    main_wizard->setEquation(new Equation(m_reactives->text(), m_products->text()));
+    main_wizard->setEquation(new EquationOld(m_reactives->text(), m_products->text()));
     return true;
 }
 
@@ -344,7 +344,7 @@ void EquilibratePage::initializePage(){
         QMessageBox::critical(this, "Error", "MainWizard Cast Error");
         return;
     }
-    m_equation = new Equation(*(main_wizard->equation()));
+    m_equation = new EquationOld(*(main_wizard->equation()));
     updateState();
     m_eqStr->setText(m_equation->toHtml());
 }
@@ -357,7 +357,7 @@ bool EquilibratePage::validatePage(){
     if(m_state == Equilibrated)
         main_wizard->setEquation(m_equation);
     else if (m_state == Invalid) {
-        QMessageBox errorMessage1(QMessageBox::NoIcon, tr("Invalid equation"),
+        QMessageBox errorMessage1(QMessageBox::NoIcon, tr("Invalid EquationOld"),
                                   tr("The chemical equation isn't valid.\nPlease enter a valid equation"),
                                   QMessageBox::Ok, wizard());
         errorMessage1.setIconPixmap(QPixmap(":/images/Failure.png"));	//	low size red PNG
@@ -450,7 +450,7 @@ void EquilibratePage::setState(State state){
             setPixmap(QWizard::WatermarkPixmap, QPixmap(QString(":/Images/watermark_orange.png")));
             break;
         case Error:
-            m_stateLabel->setText(tr("Could not equilibrate equation"));
+            m_stateLabel->setText(tr("Could not equilibrate the equation"));
             m_stateLabelImg->setPixmap(QPixmap(":/images/Warning.png"));	//	orange '?' PNG
             m_equilibrate->setEnabled(true);
             setPixmap(QWizard::WatermarkPixmap, QPixmap(QString(":/Images/watermark_orange.png")));
@@ -477,7 +477,7 @@ void MatterQuantityPage::initializePage(){
         QMessageBox::critical(this, "Error", "MainWizard Cast Error");
         return;
     }
-    m_equation = new Equation(*(main_wizard->equation()));
+    m_equation = new EquationOld(*(main_wizard->equation()));
     QMap<MoleculeOld, int> moleculeStoechs(m_equation->reactives());
     QList<MoleculeOld> reactives(moleculeStoechs.keys());
     qSort(reactives.begin(), reactives.end(), moleculeLessThanUser);

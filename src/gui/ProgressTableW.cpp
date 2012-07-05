@@ -9,7 +9,7 @@
 
 #include "gui/ProgressTableW.h"
 
-ProgressTableW::ProgressTableW(QWidget* parent) : QDialog(parent), m_document(new QTextDocument(this)), m_equation(Equation()) {
+ProgressTableW::ProgressTableW(QWidget* parent) : QDialog(parent), m_document(new QTextDocument(this)), m_EquationOld(EquationOld()) {
         //	GUI to implement
     m_menubar = new MainMenuBar(this);
     m_menubar->setCopy(false);
@@ -26,12 +26,12 @@ ProgressTableW::ProgressTableW(QWidget* parent) : QDialog(parent), m_document(ne
     connect(m_menubar, SIGNAL(copyRequested()), m_textEdit, SLOT(copy()));
 }
 
-ProgressTableW::ProgressTableW(QTextDocument* table, const Equation & eq, QWidget* parent) : QDialog(parent), m_document(table->clone(this)), m_equation(eq) {
+ProgressTableW::ProgressTableW(QTextDocument* table, const EquationOld & eq, QWidget* parent) : QDialog(parent), m_document(table->clone(this)), m_EquationOld(eq) {
     m_menubar = new MainMenuBar(this);
     m_menubar->setCopy(false);
     QVBoxLayout* layout = new QVBoxLayout(this);
     m_textEdit = new QTextEdit(this);
-    if (eq != Equation()) {
+    if (eq != EquationOld()) {
         setWindowTitle(tr("Progress Table : %1").arg(eq.toStr()));
     }
     else {

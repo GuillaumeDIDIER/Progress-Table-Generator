@@ -5,6 +5,9 @@
  *  Created by Guillaume DIDIER on 23/03/11.
  *  Copyright 2011.
  *	MoleculeOld class header
+ *  Old Chemical Compound representing class.
+ *  Deprecated.
+ *  Will be removed in afuture version.
  */
 
 #ifndef Molecule_H
@@ -16,7 +19,7 @@
 #include "physics/ElementTable.h"
     /*	this class represents a molecule
         created using its formula
-        it also queries the its periodic element table
+        it also queries its periodic element table
         to get informations about the elements which it is constituted by
     */
 class MoleculeOld : public QMap<const Element*, int> {

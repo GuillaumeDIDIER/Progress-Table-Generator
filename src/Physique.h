@@ -40,7 +40,7 @@
  *      Molecule.[h/cpp] : implementation of the ChemicalReactive interface, for chemical compounds.
  *          See documentation in Reactive.h and in the classes' headers.
  *
- *		Equation.[h/cpp] : represents a chemical equation, old class,
+ *		EquationOld.[h/cpp] : represents a chemical equation, old class,
  *                         will be replaced by an inheritance class hierarchy,
  *                         based on the Reactive classes
  *	an additional file for unit tests, UnitTest.[h/cpp]

@@ -1,5 +1,5 @@
 /*
- *  Equation.h
+ *  EquationOld.h
  *  Physique
  *
  *  Created by Guillaume DIDIER on 15/04/11.
@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef Equation_H
-#define Equation_H
+#ifndef EquationOld_H
+#define EquationOld_H
 
 #include "Physique.h"
 
@@ -18,14 +18,14 @@
 
 
 
-class Equation {
-    friend bool operator==(const Equation& a, const Equation& b);
-    friend bool operator!=(const Equation& a, const Equation& b){return !(a == b);}
+class EquationOld {
+    friend bool operator==(const EquationOld& a, const EquationOld& b);
+    friend bool operator!=(const EquationOld& a, const EquationOld& b){return !(a == b);}
 public:
-    Equation();							//	should not be used
-    Equation(const Equation& other);	//	neither
-    Equation(QString reactivesStr, QString productsStr);	//	"designed constructor" (Objc allusion)
-    ~Equation();
+    EquationOld();							//	should not be used
+    EquationOld(const EquationOld& other);	//	neither
+    EquationOld(QString reactivesStr, QString productsStr);	//	"designed constructor" (Objc allusion)
+    ~EquationOld();
 
     bool equilibrate();
     bool isValid() const;
@@ -44,7 +44,7 @@ public:
     QMap<MoleculeOld, int> products();
 
 
-    static const QString equation_rx();
+    static const QString EquationOld_rx();
 
 
 protected:
@@ -59,7 +59,7 @@ protected:
 
 #ifdef DEBUG
 QDebug& operator<<(QDebug& out, const MoleculeOld& mol);
-QDebug& operator<<(QDebug& out, const Equation& eq);
+QDebug& operator<<(QDebug& out, const EquationOld& eq);
 #endif	//	ifdef DEBUG
 bool moleculeLessThanUser(const MoleculeOld& a, const MoleculeOld& b);
-#endif	//	ifndef Equation_H
+#endif	//	ifndef EquationOld_H

@@ -15,7 +15,7 @@
 #include "physics/Element.h"
 #include "physics/ElementTable.h"
 #include "physics/MoleculeOld.h"
-#include "physics/Equation.h"
+#include "physics/EquationOld.h"
 
 #include "gui/MainMenuBar.h"
 #include "gui/ProgressTableW.h"
@@ -26,8 +26,8 @@ public:
     MainWindow(QWidget* parent = 0);
     virtual ~MainWindow();
 
-    const Equation* equation() const;
-    void setEquation(Equation* eq);
+    const EquationOld* equation() const;
+    void setEquation(EquationOld* eq);
 public slots:
     void accept();
 protected slots:
@@ -36,7 +36,7 @@ protected:
         //	members
     MainMenuBar * m_menuBar;
     enum WizardPage { P_Intro, P_Equation, P_Equilibrate, P_MatterQuantity, P_Conclusion};
-    Equation* m_equation;
+    EquationOld* m_equation;
 
 
 };
