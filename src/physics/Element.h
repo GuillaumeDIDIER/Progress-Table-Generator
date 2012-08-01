@@ -16,35 +16,29 @@ class Element {
 public:
         //	constructors destructors
     Element();
-    Element(QString name,QString symbol, int Z/*, int externalElectron, int maxBond*/, int A = 0);
-    Element(const Element& other);
+    Element(QString name, QString symbol, int Z, int A = 0); //  designed constructor
+    Element(const Element& other);  //  copy constructor
     ~Element();
-        //	accessors
+        //	accessors : see member doc in the protected field
     QString name() const;
     QString symbol() const;
     int Z() const;
     int A() const;
-/*	int maxBond() const;
-    int externalElectronNb() const;*/
-
-        //	Todo add setters
 
         //	comparison
-    static bool symbolCompare(const Element* a, const Element* b);
-    static bool ZCompare(const Element* a, const Element* b);
+    static bool symbolCompare(const Element* a, const Element* b);  //  Compare by symbol
+    static bool ZCompare(const Element* a, const Element* b);   //  Compare by Z
         //	RX
-    static const QString element_rx();
+    static const QString element_rx();  //  returns a regexp validating an element Symbol
 protected:
         /*	members
             name : its name
             symbol : its symbol ex Fe
-            Z : atomic number
-            A : mass number
-            maxBond : number of bonds the element can form inside a molecule or ion
-            externalElectronNb : number of e- on its external orbit
+            Z : atomic number (the number of protons in its nucleus)
+            A : mass number (the number of nucleons in its nucleus)
          */
     QString m_name, m_symbol;
-    int m_Z, m_A/*, m_maxBond, m_externalElectronNb*/;
+    int m_Z, m_A;
 
 };
 

@@ -20,12 +20,12 @@ class ElementTable : protected QList<Element> {
 public:
         //	constructors
     ElementTable();
-    ElementTable(QList<Element> elementList);
+    ElementTable(QList<Element> elementList);   //  Designed consructor
         //	class methods which create element table
-    static ElementTable getDefaultElementTable();
-    static ElementTable getEmptyElementTable();
-    static ElementTable parseTableFromXml(QString xmlFile, bool* ok = 0);
-    static void loadElementTable(QStringList xmlFiles);
+    static ElementTable getDefaultElementTable();   //  create an ElementTable filed with only a few Elements, for test purposes
+    static ElementTable getEmptyElementTable(); //  an empty ElementTable
+    static ElementTable parseTableFromXml(QString xmlFile, bool* ok = 0);   //  try to parse an element table from the specified file
+    static void loadElementTable(QStringList xmlFiles); //  try to load the global Periodic Element Table from the specified files
 
         //	finders, which are meant to find elements from one caractéristic
     const Element* getElementFromSymbol(QString Symbol) const;

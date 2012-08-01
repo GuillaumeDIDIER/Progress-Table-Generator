@@ -7,7 +7,7 @@
  *	MoleculeOld class header
  *  Old Chemical Compound representing class.
  *  Deprecated.
- *  Will be removed in afuture version.
+ *  Will be removed in a future version.
  */
 
 #ifndef Molecule_H

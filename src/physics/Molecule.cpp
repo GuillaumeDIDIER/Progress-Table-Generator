@@ -24,32 +24,29 @@ c_PeriodicElementTable = pTable;
 
 Molecule::Molecule(QString formula, bool *ok) : ChemicalReactive(ok), m_charge(0), m_state(NonMentioned)
 {
-    if(ok && *ok)
-        *ok = setFormula(formula);
+    if(ok && *ok)   //  if the ok pointer isn't null and *ok is true
+        *ok = setFormula(formula);  // we set the formula and set *ok to the return value
     else if (!ok) {
-        setFormula(formula);
+        setFormula(formula);    //  if ok is null; we ignore the ok return value
     }
     else
-       m_state = Invalid;
+       m_state = Invalid;   //  if *ok is false, thge Molecule is invalid
 }
 
-Molecule::~Molecule()
+Molecule::~Molecule()   //  destructor
 {
 }
 
 bool Molecule::isValid() const
 {
-    if(!m_state || (isEmpty()))
-        return false;
-    return true;
+    if(!m_state || (isEmpty())) //  if the molecule is in an invalid state or if it is empty / null
+        return false;   //  the Molecule is not valid
+    return true;    //  in the other case it must be valid
 }
-
-enum HtmlConverterState {
-    Error = 0, ReadingElement, ReadingGroupOrState, ReadingCount, ReadingState, ReadingCharge
-};
-
+    //  converts the string representation to html
 QString Molecule::toHtml() const
 {
+    //  state machine
     enum HtmlConverterState {
         ReadingElement, ReadingGroupOrState, ReadingCount, ReadingState, ReadingCharge
     };
@@ -155,7 +152,9 @@ QString Molecule::toHtml() const
     return htmlFormula;
 }
 
-// todo move this logic to a molecule parser class.
+    //  molecule formula setter
+    //  state machine based logic
+    //  todo move this logic to a molecule parser class.
 bool Molecule::setFormula(QString newFormula)
 {
 
@@ -481,8 +480,8 @@ bool Molecule::setFormula(QString newFormula)
                 }
                 else {
                     m_state = OtherSoluted;
-                    m_state_str = tmp;
                 }
+                m_state_str = tmp;
                 state_set = true;
                 parserState = StateParsed;
                 continue;
@@ -553,7 +552,7 @@ bool Molecule::setFormula(QString newFormula)
     m_formula = newFormula;
     return true;
 }
-
+    //  factory constructor and destructors.
 MoleculeFactory::MoleculeFactory()
 {
 
@@ -561,19 +560,19 @@ MoleculeFactory::MoleculeFactory()
 
 MoleculeFactory::~MoleculeFactory()
 {
-    instance = (MoleculeFactory*)0;
+    instance = (MoleculeFactory*)0; //  not to leave the pointer dangling.
 }
 
 Molecule* MoleculeFactory::buildReactive(QString formula) const
 {
-    if(QRegExp(reactiveRX()).exactMatch(formula))
+    if(QRegExp(reactiveRX()).exactMatch(formula))   //  check the match of the RX
     {
-        bool ok(true);
-        Molecule * molecule = new Molecule(formula, &ok);
-        if(ok)
-            return molecule;
-        else
-            delete molecule;
+        bool ok(true);  //  boolean passed to Molecule constructor
+        Molecule * molecule = new Molecule(formula, &ok);   //  new Molecule from formula
+        if(ok)  //  if it was ok
+            return molecule;    //  return it
+
+        delete molecule;    //  if not delete it
     }
     return 0;   // if we haven't already returned,
                 // then the formula does not represent
@@ -581,19 +580,21 @@ Molecule* MoleculeFactory::buildReactive(QString formula) const
 }
 
 
-MoleculeFactory* MoleculeFactory::getInstance()
+MoleculeFactory* MoleculeFactory::getInstance() //  creates a new instance if it does not exist (instance == 0)
 {
-    if(instance)
-        return instance;
-    return instance = new MoleculeFactory();
+    if(instance)    //  if instance exist
+        return instance;    //  return it
+    return instance = new MoleculeFactory();    //  else create a new instance and return it
 }
 
+    //  returns a map associating to each const Element* its count
 QMap<const Element*, int> Molecule::elementMap() const
 {
-    return QMap<const Element*, int>(*this);
+    return QMap<const Element*, int>(*this);    //  return a freshly created Map from *this, using QMap copy constructor.
+                                                //  Molecule is internally implemented by private inheritance of QMap
 }
 #ifdef DEBUG
-
+    //  debug output operator.
 QDebug operator<<(QDebug out, const Molecule & mol){
     out << mol.toStr() << " : " << mol.elementMap() << " : " << mol.charge() << "\n";
     foreach (const Element* element, mol.elementMap().keys()) {

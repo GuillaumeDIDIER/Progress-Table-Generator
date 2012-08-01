@@ -8,11 +8,11 @@
  */
 
 #include "Chemicalreactive.h"
-
+    //  ChemicalReactive constructor : naught to do, except passing the bool* to superclass.
 ChemicalReactive::ChemicalReactive(bool *ok) : Reactive(ok)
 {
 }
-
+    //  ChemicalReactiveFactory constructor and destructor, naught to do.
 ChemicalReactiveFactory::ChemicalReactiveFactory() : ReactiveFactory()
 {
 }

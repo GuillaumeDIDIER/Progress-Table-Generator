@@ -17,16 +17,15 @@ const QString Element::element_rx(){ return QString("[A-Z][a-z]{0,2}");}
 Element::Element() : m_name(""), m_symbol(""), m_Z(0), m_A(0)/*, m_maxBond(0), m_externalElectronNb(0)*/{}
 
     //	Main constructor
-Element::Element(QString name,QString symbol, int Z/*, int externalElectron, int maxBond*/, int A) :
-m_name(name), m_symbol(symbol), m_Z(Z), m_A(A)/*, m_maxBond(maxBond), m_externalElectronNb(externalElectron)*/{
-    if (m_A<m_Z) {
+Element::Element(QString name,QString symbol, int Z, int A) :
+m_name(name), m_symbol(symbol), m_Z(Z), m_A(A){
+    if (m_A<m_Z) {  //  A is always >= Z
         m_A = m_Z;
     }
 }
 
     //	copy constructor
-Element::Element(const Element& other) : m_name(other.m_name), m_symbol(other.m_symbol), m_Z(other.m_Z), m_A(other.m_A)/*,
-m_maxBond(other.m_maxBond), m_externalElectronNb(other.m_externalElectronNb)*/{}
+Element::Element(const Element& other) : m_name(other.m_name), m_symbol(other.m_symbol), m_Z(other.m_Z), m_A(other.m_A){}
 
     //	Destructor, naught to do here, only on the stacks variables, deallocated by compiler
 Element::~Element(){}
@@ -48,15 +47,6 @@ int Element::Z() const{
 int Element::A() const{
     return m_A;
 }
-/*		//	max_bond getter
-int Element::maxBond() const{
-    return m_maxBond;
-}
-        //	external electron number getter
-int Element::externalElectronNb() const{
-    return m_externalElectronNb;
-}
-*/
     // Todo add setters
 
     //	comparison

@@ -14,9 +14,6 @@
 #include "physics/MoleculeOld.h"
 #include "physics/EquationOld.h"
 
-//#include <../../../Libraries/rmath/Rational.hpp>
-//#include <../../../Libraries/rmath/MathsFuncs.hpp>
-
 #include<boost/rational.hpp>
 
     //	class const variables
