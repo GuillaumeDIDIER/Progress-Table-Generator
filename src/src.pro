@@ -17,14 +17,17 @@ INCLUDEPATH += . "../include"
 # Input
 GuiSources += gui/MainMenuBar.cpp gui/MainWindow.cpp gui/ProgressTableW.cpp
 PhysicsSources += physics/Element.cpp physics/ElementTable.cpp physics/MoleculeOld.cpp physics/EquationOld.cpp \
-physics/Reactive.cpp physics/ChemicalReactive.cpp physics/Electron.cpp physics/Molecule.cpp
+physics/Reactive.cpp physics/ChemicalReactive.cpp physics/Electron.cpp physics/Molecule.cpp physics/Equation.cpp physics/ChemicalEquation.cpp
 SOURCES += main.cpp $$GuiSources $$PhysicsSources
+
+
 
 PrivateGuiHeader = gui/MainWindow_p.h
 GuiHeaders += gui/MainMenuBar.h gui/MainWindow.h gui/ProgressTableW.h  $$PrivateGuiHeader
 PhysicsHeaders += physics/Element.h physics/ElementTable.h physics/MoleculeOld.h physics/EquationOld.h \
-physics/Reactive.h physics/ChemicalReactive.h physics/Electron.h physics/Molecule.h
+physics/Reactive.h physics/ChemicalReactive.h physics/Electron.h physics/Molecule.h physics/Equation.h physics/ChemicalEquation.h
 HEADERS += Physique.h $$GuiHeaders $$PhysicsHeaders
+
 
 TRANSLATIONS += ../translation/Physique_fr.ts
 

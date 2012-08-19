@@ -16,7 +16,6 @@
 
 #include <QtXml>
 #include <QtXmlPatterns>
- //#define XMLPARSER_INCLUDED
 
 #include <QTranslator>
 #include <QLocale>
