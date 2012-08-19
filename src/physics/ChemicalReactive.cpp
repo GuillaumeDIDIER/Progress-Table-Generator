@@ -7,7 +7,7 @@
  *
  */
 
-#include "Chemicalreactive.h"
+#include "ChemicalReactive.h"
     //  ChemicalReactive constructor : naught to do, except passing the bool* to superclass.
 ChemicalReactive::ChemicalReactive(bool *ok) : Reactive(ok)
 {
