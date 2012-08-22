@@ -62,4 +62,8 @@ public:
 
 typedef ChemicalReactive::ChemicalReactiveFactory ChemicalReactiveFactory;  //  exports the Fatory in the global namespace.
 
+    //  returns a list containing all the built-in chemical reactive factories.
+    //  implemented in BuiltinReactiveFactories.cpp
+QList<ChemicalReactiveFactory*> builtinReactiveChemicalFactories();
+
 #endif // CHEMICALREACTIVE_H

@@ -43,4 +43,8 @@ public:
 
 typedef Reactive::ReactiveFactory ReactiveFactory;  //  exports the Fatory in the global namespace.
 
+//  returns a list containing all the built-in reactive factories.
+//  implemented in BuiltinReactiveFactories.cpp
+QList<ReactiveFactory*> builtinReactiveFactories();
+
 #endif // REACTIVE_H
