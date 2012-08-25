@@ -1,5 +1,17 @@
 #include "Equation.h"
 
-Equation::Equation()
+Equation::Equation(bool *ok)
+{
+}
+
+Equation::~Equation()
+{
+}
+
+EquationFactory::EquationFactory()
+{
+}
+
+EquationFactory::~EquationFactory()
 {
 }

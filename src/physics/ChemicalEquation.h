@@ -11,7 +11,25 @@
 class ChemicalEquation : public Equation
 {
 public:
-    ChemicalEquation();
+    ChemicalEquation(bool *ok = 0);
+    virtual ~ChemicalEquation();
+    virtual QString toStr() const;
+    virtual QString toHtml() const;
+    virtual State state() const;
+
+    class ChemicalEquationFactory : public EquationFactory
+    {
+    protected:
+        ChemicalEquationFactory();
+        virtual ~ChemicalEquationFactory();
+    public:
+        virtual ChemicalEquation* buildEquation(QString stringRepr) const;
+        static ChemicalEquationFactory* getInstance();
+    private:
+        static ChemicalEquationFactory* instance;
+    };
+    virtual ChemicalEquationFactory* factory() const;
 };
 
+typedef ChemicalEquation::ChemicalEquationFactory ChemicalEquationFactory;
 #endif // CHEMICALEQUATION_H
