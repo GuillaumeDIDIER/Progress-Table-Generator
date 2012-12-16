@@ -345,6 +345,7 @@ void EquilibratePage::initializePage(){
         return;
     }
     m_equation = new Equation(*(main_wizard->equation()));
+    m_hasTryiedToEquilibrate = false;
     updateState();
     m_eqStr->setText(m_equation->toHtml());
 }
